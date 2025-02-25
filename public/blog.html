@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe Articles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+   body {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    color: #2e7d32;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.navbar-nav .nav-link {
+position: relative;
+font-size: 18px;
+font-weight: 500;
+/* color: black; */
+transition: color 0.3s ease-in-out;
+/* font-family: 'Playfair Display', serif; */
+}
+
+
+.navbar-light .navbar-nav .nav-link{
+    font-family: 'Poppins', serif;
+    color: #045a06;
+}
+
+.navbar-nav .nav-link:hover {
+color: green;
+}
+
+.fav{
+    margin-left: 10px;
+}
+
+/* Underline Animation */
+.navbar-nav .nav-link::after {
+content: "";
+position: absolute;
+left: 50%;
+bottom: -3px;
+width: 0;
+height: 3px;
+background-color: green;
+transition: all 0.3s ease-in-out;
+transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+width: 100%;
+}
+
+/* Custom styles for the logo and app name */
+.navbar-brand {
+display: flex;
+align-items: center;
+padding: 10px 0; /* Add padding to create space around the logo and app name */
+}
+
+.navbar-brand img {
+max-height: 50px; /* Smaller logo size */
+width: auto; /* Maintain aspect ratio */
+margin-right: 10px; /* Space between logo and app name */
+}
+
+.navbar-brand .app-name {
+font-size: 1.5rem; /* Adjust the font size of the app name */
+font-weight: bold;
+color: #126c1a; /* Green color to match the theme */
+}
+
+/* Ensure the navbar is responsive */
+.navbar-collapse {
+flex-grow: 0; /* Prevent the navbar from stretching */
+}
+
+/* Add padding or margin to the navbar for better spacing */
+.navbar {
+padding: 10px 0; /* Add padding to the entire navbar */
+}
+
+/* Adjust the search bar and buttons for smaller screens */
+@media (max-width: 992px) {
+.navbar-nav {
+margin-top: 10px; /* Add margin to nav items on smaller screens */
+}
+
+.form-inline {
+margin-top: 10px; /* Add margin to the search bar on smaller screens */
+}
+
+.btn {
+margin-top: 10px; /* Add margin to buttons on smaller screens */
+}
+
+/* Ensure the navbar-brand doesn't overlap on smaller screens */
+.navbar-brand {
+margin-right: auto; /* Push the brand to the left */
+}
+}
+
+.article-heading {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2c662d;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.article-heading::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background-color: #4caf50;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: #ff9800;
+}
+
+.podcast-heading {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2c662d;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.podcast-heading::after {
+    content: "";
+    width: 90px;
+    height: 4px;
+    background-color: #ff9800;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: #ff9800;
+}
+
+.podcast-subheading {
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+.sub-heading {
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+}
+
+.article-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.article-title {
+    font-weight: bold;
+    color: #2c662d;
+    font-size: 1.2rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+.modal-content {
+    background-color: #f1f8e9;
+    color: #1b5e20;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #1b5e20;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1);
+}
+
+/* Additional unique animation for the body background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(232, 245, 233, 0.8), rgba(200, 230, 201, 0.8));
+    z-index: -1;
+    animation: animateBackground 10s infinite alternate;
+}
+
+@keyframes animateBackground {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#blog-section {
+  background-color: #f8f9fa;
+  padding: 50px 50px;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle animated background effect */
+#blog-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 123, 255, 0.05));
+  z-index: 0;
+  animation: animateBackground 10s infinite alternate;
+}
+
+@keyframes animateBackground {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  opacity: 0.95;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+.card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+/* Add a floating animation to the cards */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: float 4s ease-in-out infinite;
+}
+
+.card-body {
+      position: relative;
+    }
+    .full-article {
+      display: none;
+    }
+/* Style the button with a hover effect and animation */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.poll-heading {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2c662d;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.poll-heading::after {
+    content: "";
+    width: 100px;
+    height: 4px;
+    background-color: #ff9800;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: #ff9800;
+}
+
+.poll-subheading {
+    font-size: 1.2rem;
+    color: #555;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+
+/* Add a pulse animation to the button */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn-primary:active {
+  animation: pulse 0.5s ease;
+}
+
+/* Add a fade-in animation for the blog section */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#blog-section {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.dropdown-menu {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.card {
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.3);
+}
+
+.poll-card {
+    background: #81C784;
+}
+
+.podcast-card {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border-radius: 20px;
+    color: white;
+    max-width: 450px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.podcast-card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 15px 30px rgba(0, 128, 0, 0.4);
+}
+
+.podcast-icon {
+    font-size: 50px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.btn-light {
+    background: white;
+    color: #2E7D32;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+    background: #E8F5E9;
+    color: #1B5E20;
+}
+
+.poll-card {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border-radius: 20px;
+    color: white;
+    max-width: 450px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.poll-card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 15px 30px rgba(0, 128, 0, 0.4);
+}
+
+.poll-icon {
+    font-size: 50px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.btn-light {
+    background: white;
+    color: #2E7D32;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-light:hover {
+    background: #E8F5E9;
+    color: #1B5E20;
+}
+
+.footer {
+    background: linear-gradient(135deg, #154734, #28a745);
+    color: white;
+    margin-top: 50px;
+}
+
+.footer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #ffcc00;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer ul li a i {
+    margin-right: 8px;
+}
+
+.footer ul li a:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer .newsletter-form input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.footer .newsletter-form button {
+    background: #ffcc00;
+    color: #154734;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.footer .newsletter-form button:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+.legal-links li a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.legal-links li a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@500&display=swap');
+
+.stylish-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #157347; /* Soft green */
+    text-transform: capitalize; /* Looks more natural */
+    letter-spacing: 1px;
+    border-bottom: 2px solid #a3d9a5; /* Light green underline */
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.stylish-text:hover {
+    color: #0d5c38; /* Darker green on hover */
+    border-bottom: 2px solid #81c784; /* Slightly darker green underline */
+}
+
+    </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class=" container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;"> <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+            </a>
+    
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i> Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+    
+                <!-- Search Bar -->
+                <!-- <form class="d-flex ms-auto me-4 flex-grow-1 flex-lg-grow-0">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search Recipes" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+    
+                <!-- Shopping Cart and Logout Buttons -->
+                <div class="d-flex align-items-center">
+                  
+                    <div class="d-flex align-items-center">
+                        <!-- <a href="#" class="btn btn-outline-primary position-relative me-3">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                        </a> -->
+                        <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 15px;">
+                            <i class="fas fa-heart"></i> (<span id="favCount">0</span>)
+                        </button>
+                          <script>
+                            document.getElementById('favBtn').addEventListener('click', () => {
+                          // You can navigate to a separate "favorites" page or filter favorites on the current page
+                          window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                        });
+                        </script>
+                    <button class="btn btn-outline-danger" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 article-heading">
+            🍽️ <span class="highlight">Delicious</span> Food Articles 🍲
+        </h2>
+        <p class="text-center sub-heading">
+            Discover mouthwatering recipes, expert cooking tips, and food secrets! 🌿✨
+        </p>
+        <div class="row">
+            <!-- Articles dynamically generated -->
+        </div>
+    </div>
+    
+
+    <!-- Modal -->
+    <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleModalLabel">Article Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="articleContent">
+                    <!-- Image and article content will be inserted dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <!-- Podcast & Blog -->
+      <div class="container mt-5 text-center">
+        <h2 class="podcast-heading text-center">
+            🎙️ <span class="highlight">Discover</span> Our Food Podcast
+        </h2>
+        <p class="podcast-subheading text-center mb-3">
+            🍽️ Join top chefs & food lovers for exciting talks, expert tips, and delicious stories! 🎧✨
+        </p>
+        
+    
+        <div class="d-flex justify-content-center">
+            <div class="podcast-card text-center p-4 shadow-lg">
+                <div class="podcast-icon">
+                    <i class="fas fa-microphone-alt"></i>
+                </div>
+                <h4 class="fw-bold">🍽️ Listen to Our Latest Episode!</h4>
+                <p class="text-light">Get the best cooking tips, secret recipes, and chef interviews!</p>
+                <button class="btn btn-light btn-lg mt-2" onclick="openPodcast()">🎧 Play Now</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <section id="blog-section" class="container my-5">
+        <h2 class="text-center mb-4">🍽️ Explore Tasty & Informative Food Articles 📖</h2>
+        <div class="row">
+          <!-- Blog 1: Food History & Culture -->
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://www.slofoodbank.org/wp-content/uploads/2023/07/Food-as-Culture.png" class="card-img-top" alt="Food History & Culture">
+              <div class="card-body">
+                <h5 class="card-title">Food History & Culture</h5>
+                <p class="card-text">Explore the origins of different cuisines and understand their cultural significance.</p>
+                <button class="btn btn-primary" onclick="toggleArticle('food-history', event)">Read More</button>
+                <div id="food-history" class="full-article p-4 mt-3 border rounded shadow-lg" style="display: none;">
+                    <h4 class="mb-3 text-info">Food History & Culture: A Journey Through Time</h4>
+                    <p class="lead">Food has been a part of human civilization for millennia. Every culture has its own unique dishes, and the evolution of food mirrors the development of societies.</p>
+                    <hr>
+                  
+                    <h5 class="mt-3 text-success">1. The Origins of Cooking</h5>
+                    <p>The earliest evidence of cooking dates back to the discovery of fire. Early humans used fire to cook meat, fruits, and vegetables, improving nutrition and food preservation.</p>
+                    
+                    <h5 class="mt-3 text-success">2. Ancient Civilizations and Their Cuisines</h5>
+                    <p>In ancient Egypt, Greece, and Rome, culinary practices were deeply intertwined with religious rituals and cultural identities. Spices like cumin and cinnamon were highly prized, and cooking was often a communal activity.</p>
+                  
+                    <h5 class="mt-3 text-success">3. The Globalization of Food</h5>
+                    <p>As trade routes expanded, so did the exchange of food ingredients and cooking methods. The introduction of spices, grains, and new cooking techniques from the East significantly influenced European cuisine during the Renaissance.</p>
+                  
+                    <hr>
+                    <button class="btn btn-secondary mt-4" onclick="toggleArticle('food-history', event)">Close</button>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+    
+          <!-- Blog 2: Cooking Techniques -->
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://cdn.slidesharecdn.com/ss_thumbnails/methodsofcookingmeat-240402000420-18f953fa-thumbnail.jpg?width=640&height=640&fit=bounds" class="card-img-top" alt="Cooking Techniques">
+              <div class="card-body">
+                <h5 class="card-title">Cooking Techniques</h5>
+                <p class="card-text">Discover expert tips and tricks to master various cooking methods.</p>
+                <button class="btn btn-primary" onclick="toggleArticle('cooking-techniques', event)">Read More</button>
+                <div id="cooking-techniques" class="full-article p-4 mt-3 border rounded shadow-lg" style="display: none;">
+                    <h4 class="mb-3 text-info">Cooking Techniques: Master the Art of Cooking</h4>
+                    <p class="lead">From roasting to sautéing, cooking techniques are fundamental in preparing any dish. Whether you're a beginner or an expert, mastering these techniques will elevate your cooking.</p>
+                    <hr>
+                    
+                    <h5 class="mt-3 text-success">1. Roasting</h5>
+                    <p>Roasting involves cooking food in an oven or over a fire. This method is often used for meats, vegetables, and nuts, providing a rich, caramelized flavor and a crispy texture.</p>
+                    
+                    <h5 class="mt-3 text-success">2. Sautéing</h5>
+                    <p>Sautéing is a quick cooking technique in which food is cooked in a small amount of fat in a shallow pan over high heat. It’s perfect for vegetables, fish, and meat cuts like chicken breasts.</p>
+                    
+                    <h5 class="mt-3 text-success">3. Grilling</h5>
+                    <p>Grilling involves cooking food over direct heat, usually on a grill or barbecue. The high heat creates a smoky flavor and attractive grill marks on meat, vegetables, and even fruits.</p>
+                  
+                    <hr>
+                    <button class="btn btn-secondary mt-4" onclick="toggleArticle('cooking-techniques', event)">Close</button>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+    
+          <!-- Blog 3: Kitchen Gadgets & Tools -->
+          <div class="col-md-4">
+            <div class="card">
+              <img src="https://cdn.shopify.com/s/files/1/0931/2382/files/blog_banner_inner_12august2022_480x480.jpg?v=1660296490" class="card-img-top" alt="Kitchen Gadgets & Tools">
+              <div class="card-body">
+                <h5 class="card-title">Kitchen Gadgets & Tools</h5>
+                <p class="card-text">Find the best kitchen equipment and gadgets to improve your cooking experience.</p>
+                <button class="btn btn-primary" onclick="toggleArticle('kitchen-tools', event)">Read More</button>
+                <div id="kitchen-tools" class="full-article p-4 mt-3 border rounded shadow-lg" style="display: none;">
+                    <h4 class="mb-3 text-info">Kitchen Gadgets & Tools: Must-Have Essentials</h4>
+                    <p class="lead">Having the right tools in the kitchen can make cooking much easier and more enjoyable. Whether you are a beginner or a professional chef, investing in the right kitchen gadgets can enhance efficiency.</p>
+                    <hr>
+                  
+                    <h5 class="mt-3 text-success">1. Cutting-Edge Knives</h5>
+                    <p>A sharp, high-quality knife set is the backbone of any kitchen. A chef’s knife, paring knife, and serrated knife cover most cutting needs.</p>
+                  
+                    <h5 class="mt-3 text-success">2. Multi-Purpose Blenders</h5>
+                    <p>Blenders and food processors help with making smoothies, soups, sauces, and even dough. Investing in a powerful blender can save time and effort.</p>
+                  
+                    <h5 class="mt-3 text-success">3. Digital Kitchen Scales</h5>
+                    <p>Measuring ingredients accurately is key to perfect recipes. Digital kitchen scales ensure precision in baking and portion control.</p>
+                  
+                    <h5 class="mt-3 text-success">4. Air Fryers & Slow Cookers</h5>
+                    <p>These modern gadgets make cooking healthier and more convenient. Air fryers reduce oil usage, while slow cookers let you prepare meals with minimal effort.</p>
+                
+                  
+                    <hr>
+                    <button class="btn btn-secondary mt-4" onclick="toggleArticle('kitchen-tools', event)">Close</button>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+<div class="container mt-5">
+    <div class="row mt-4">
+    
+
+        <!-- Polls & Voting -->
+        <div class="container mt-5 text-center">
+            <h2 class="poll-heading text-center">
+                📊 <span class="highlight">Vote</span> for the Next Recipe!
+            </h2>
+            <p class="poll-subheading text-center mb-3">
+                🍽️ Help us decide what to cook next! Your vote matters. ✅✨
+            </p>
+            
+            <div class="d-flex justify-content-center">
+                <div class="poll-card text-center p-4 shadow-lg">
+                    <div class="poll-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4 class="fw-bold">🔥 Choose Your Favorite Dish!</h4>
+                    <p class="text-light">Vote now and let’s cook something delicious together! 👨‍🍳</p>
+                    <select class="form-select mb-3" id="recipePoll">
+                        <option value="pasta">🍝 Pasta</option>
+                        <option value="biryani">🍛 Biryani</option>
+                        <option value="pancakes">🥞 Pancakes</option>
+                        <option value="tacos">🌮 Tacos</option>
+                    </select>
+                    <button class="btn btn-light btn-lg" onclick="submitVote()">✅ Vote Now</button>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
+
+<footer class="footer bg-dark text-light py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🌍 Explore</h5>
+                <ul class="list-unstyled">
+                    <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Recipes -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🔥 Trending Dishes</h5>
+                <ul class="list-unstyled">
+                    <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📍 Find Us</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+            </div>
+
+            <!-- Newsletter & Social Media -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📩 Stay Updated</h5>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email here" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <div class="social-icons mt-4">
+                    <h5>🤩 Follow Our Journey</h5>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline legal-links">
+                    <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                    <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom text-center mt-4">
+            <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+   const articles = [
+    { 
+        title: "The Art of Perfect Pasta", 
+        image: "assets/pastaa.jpg", 
+        content: "Making the perfect pasta requires patience, skill, and the right ingredients. From selecting high-quality flour to mastering the kneading process, every step plays a crucial role. Discover the secrets of achieving the perfect al dente texture and explore traditional Italian pasta-making techniques. 🍝✨"
+    },
+    { 
+        title: "Benefits of Mediterranean Diet", 
+        image: "assets/diet.png", 
+        content: "The Mediterranean diet is known for its heart-healthy benefits and fresh ingredients. With a focus on olive oil, fresh vegetables, lean proteins, and whole grains, this diet can enhance your overall wellness. Learn why experts recommend it for a longer and healthier life! 🥗🌿" 
+    },
+    { 
+        title: "Mastering the Art of Baking", 
+        image: "assets/baking.png", 
+        content: "Baking is both an art and a science. From understanding the role of yeast and baking powder to achieving the perfect rise in cakes and bread, every detail matters. Follow these expert tips to improve your baking skills and make mouthwatering desserts at home. 🍞🎂" 
+    },
+    { 
+        title: "The Magic of Spices", 
+        image: "assets/spicess.jpeg", 
+        content: "Spices add depth, aroma, and uniqueness to every dish. From turmeric's anti-inflammatory benefits to cinnamon's warm flavor, each spice has its own story. Explore how different cultures use spices and learn how to mix them like a pro chef! 🌶️🍛" 
+    },
+    { 
+        title: "Nutritional Value of Superfoods", 
+        image: "assets/nutri.webp", 
+        content: "Superfoods like blueberries, quinoa, and chia seeds are packed with vitamins, minerals, and antioxidants. Learn about their incredible health benefits, how to incorporate them into your meals, and how they can boost your energy and immunity. 💪🥑" 
+    },
+    { 
+        title: "Cooking with Seasonal Ingredients", 
+        image: "assets/season.jpg", 
+        content: "Seasonal ingredients not only taste better but are also more sustainable and nutritious. From juicy summer berries to hearty winter squashes, discover how to use fresh produce to create delicious, flavor-packed meals all year round! 🥕🍆" 
+    },
+    { 
+        title: "Healthy Smoothie Recipes", 
+        image: "assets/smoothie2.webp", 
+        content: "Smoothies are a quick and delicious way to get your daily dose of fruits and veggies. Whether you prefer a protein-packed green smoothie or a refreshing berry blend, these recipes will keep you energized throughout the day! 🍓🥤" 
+    },
+    { 
+        title: "Gourmet Vegan Dishes", 
+        image: "assets/vegga.jpg", 
+        content: "Vegan food can be just as indulgent and flavorful as traditional cuisine. Learn how to prepare gourmet plant-based dishes with fresh ingredients, bold spices, and innovative cooking techniques that will impress even non-vegans! 🌱🍽️" 
+    },
+    { 
+        title: "The Science of Fermentation", 
+        image: "assets/profood.jpg", 
+        content: "Fermentation is a natural process that enhances flavors, preserves food, and boosts gut health. From making your own kimchi and kombucha to understanding probiotics, dive into the world of fermented foods and their incredible benefits! 🧂🫙" 
+    }
+];
+
+
+const row = document.querySelector(".row");
+articles.forEach((article, index) => {
+    const col = document.createElement("div");
+
+    // Always 3 columns per row in large screens, 2 per row in medium, 1 per row in small
+    col.classList.add("col-lg-4", "col-md-6", "mb-4");
+
+col.innerHTML = `
+    <div class="card article-card shadow-lg border-0 rounded-4 overflow-hidden" style="transition: transform 0.3s ease-in-out;">
+        <img src="${article.image}" class="card-img-top article-img" alt="${article.title}">
+        <div class="card-body">
+            <h5 class="article-title fw-bold text-success">${article.title}</h5>
+            <p class="card-text text-muted text-fold">
+                ${article.content.substring(0, 100)}
+                <span class="fade-text">...</span>
+            </p>
+            <button class="btn btn-success read-more-btn" onclick="openArticle(${index})">
+                Read More <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+`;
+
+    row.appendChild(col);
+});
+
+function openArticle(index) {
+    // Get the modal elements
+    document.getElementById("articleModalLabel").innerText = articles[index].title;
+
+    // Create image element dynamically
+    let imgElement = `<img src="${articles[index].image}" class="img-fluid mb-3" 
+                   style="max-height: 250px; width: 100%; object-fit: cover; border-radius: 10px;" 
+                   alt="${articles[index].title}">`;
+
+
+    // Insert image and content inside the modal
+    document.getElementById("articleContent").innerHTML = imgElement + "<p>" + articles[index].content + "</p>";
+
+    // Show the modal
+    var modal = new bootstrap.Modal(document.getElementById("articleModal"));
+    modal.show();
+}
+
+
+
+
+        function toggleArticle(articleId, event) {
+      // Prevent the default behavior of anchor tag (which causes page reload)
+      event.preventDefault();
+
+      // Get the article div
+      var article = document.getElementById(articleId);
+      
+      // Toggle the display of the article
+      if (article.style.display === "none" || article.style.display === "") {
+        article.style.display = "block";
+      } else {
+        article.style.display = "none";
+      }
+    }
+
+//     document.querySelectorAll('.filter-option').forEach(item => {
+//     item.addEventListener('click', function() {
+//         let selectedFilter = this.getAttribute('data-filter');
+//         console.log("Filter applied: ", selectedFilter);
+        
+//     });
+// });
+
+
+function submitVote() {
+    let selectedRecipe = document.getElementById("recipePoll").value;
+    alert("✅ Thanks for voting! " + selectedRecipe + " is now leading!");
+}
+
+function openPodcast() {
+    window.open("https://podcasts.apple.com/us/podcast/the-food-podcast/id1020743099", "_blank");
+}
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module" src="homepage.js"></script>
+    <script type="module" src="favorites.js"></script>
+</body>
+</html>

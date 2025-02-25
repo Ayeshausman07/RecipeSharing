@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+    <style>
+        .card {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .card-title i {
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #28a745;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        #imagePreview {
+            border: 2px dashed #28a745;
+            padding: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@500&display=swap');
+
+        .stylish-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #157347;
+            /* Soft green */
+            text-transform: capitalize;
+            /* Looks more natural */
+            letter-spacing: 1px;
+            border-bottom: 2px solid #a3d9a5;
+            /* Light green underline */
+            transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+            display: inline-block;
+            padding-bottom: 3px;
+        }
+
+        .stylish-text:hover {
+            color: #0d5c38;
+            /* Darker green on hover */
+            border-bottom: 2px solid #81c784;
+            /* Slightly darker green underline */
+        }
+
+        .cart-btn {
+    margin-right: 12px;
+    background-color: #28a745; /* Bootstrap success green */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px; /* Makes it rounded */
+    transition: 0.3s ease-in-out;
+}
+
+.cart-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+.cart-btn i {
+    font-size: 1.5rem; /* Increase icon size */
+}
+
+#cartBadge {
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 5px 8px;
+}
+
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;">
+                <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+            </a>
+
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i>
+                            About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i>
+                            Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact
+                            Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 15px;">
+                        <i class="fas fa-heart"></i>
+                    </button>
+
+
+
+                    <script>
+                        document.getElementById('favBtn').addEventListener('click', () => {
+                            // You can navigate to a separate "favorites" page or filter favorites on the current page
+                            window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                        });
+                    </script>
+
+
+<button class="cart-btn btn btn-success position-relative" id="cartBtn" data-bs-toggle="offcanvas" data-bs-target="#cartSidebar">
+    <i class="fas fa-shopping-cart text-white"></i>
+    <span id="cartBadge" class="badge rounded-pill bg-warning text-dark position-absolute top-0 start-100 translate-middle d-none">0</span>
+</button>
+
+                    <button class="btn btn-outline-danger" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="share-recipe-title">🍽️ Share Your Recipe</h2>
+
+        <button id="addRecipeBtn" class="btn btn-success mb-3">Add Recipe</button>
+
+        <!-- Recipe Form (Initially Hidden) -->
+        <div id="recipeFormContainer" class="card shadow-lg p-4 mb-4 d-none">
+            <div class="card-body">
+                <h4 class="card-title text-center text-success fw-bold mb-3">
+                    <i class="fas fa-utensils text-warning"></i> Share Your Delicious Recipe 🍽️
+                </h4>
+                <form id="recipeForm">
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-semibold">Recipe Title</label>
+                        <input type="text" id="title" class="form-control" placeholder="Enter recipe title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label fw-semibold">Upload Image</label>
+                        <input type="file" id="image" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label fw-semibold">Description</label>
+                        <textarea id="description" class="form-control" placeholder="Write a short description..."
+                            rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label fw-semibold">Author</label>
+                        <input type="text" id="author" class="form-control" placeholder="Your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label fw-semibold">Estimated Cost</label>
+                        <input type="number" id="price" class="form-control" placeholder="Enter estimated cost"
+                            required>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <img id="imagePreview" class="img-fluid rounded shadow d-none" src="" alt="Selected Image"
+                            style="max-height: 200px;">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 fw-bold">
+                        <i class="fas fa-plus-circle"></i> Add Recipe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display Recipes -->
+        <div id="recipeList"></div>
+    </div>
+
+    <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
+        <div class="offcanvas-header bg-success text-white">
+            <h5 class="offcanvas-title d-flex align-items-center" id="cartSidebarLabel">
+                <i class="fas fa-shopping-cart me-2"></i> Your Cart 
+                (<span id="cartCount" class="badge bg-white text-success ms-2">0</span>)
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body">
+            <div class="text-center mb-3">
+                <p class="text-muted">
+                    <i class="fas fa-info-circle"></i> You have <span id="cartCountText">0</span> items in your cart.
+                </p>
+            </div>
+    
+            <!-- Cart Items List -->
+            <ul id="cartItemsList" class="list-group">
+                <li class="list-group-item text-center text-muted" id="emptyCartMessage">
+                    <i class="fas fa-shopping-basket"></i> Your cart is empty.
+                </li>
+            </ul>
+    
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h6 class="fw-bold text-success">
+                    <i class="fas fa-wallet me-2"></i> Total: <span id="cartTotal" class="text-dark">$0.00</span>
+                </h6>
+            </div>
+    
+            <!-- Checkout Button -->
+            <div class="text-center mt-3">
+                <button class="btn btn-success w-100 checkout-btn" onclick="checkout()">
+                    <i class="fas fa-credit-card me-2"></i> Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('addRecipeBtn').addEventListener('click', function () {
+            let formContainer = document.getElementById('recipeFormContainer');
+            formContainer.classList.toggle('d-none');
+
+            // Apply smooth appearance animation
+            if (!formContainer.classList.contains('d-none')) {
+                setTimeout(() => formContainer.classList.add('show'), 10);
+            } else {
+                formContainer.classList.remove('show');
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = "none";
+            }
+        });
+    </script>
+
+
+
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">🌍 Explore</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                        <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Recipes -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">🔥 Trending Dishes</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">📍 Find Us</h5>
+                    <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                    <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                    <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+                </div>
+
+                <!-- Newsletter & Social Media -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">📩 Stay Updated</h5>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email here" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                    <div class="social-icons mt-4">
+                        <h5>🤩 Follow Our Journey</h5>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <ul class="list-inline legal-links">
+                        <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom text-center mt-4">
+                <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include Cloudinary Widget -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+    <script type="module" src="homepage.js"></script>
+    <script type="module" src="favorites.js"></script>
+    <script type="module" src="addscript.js"></script>
+</body>
+
+</html>

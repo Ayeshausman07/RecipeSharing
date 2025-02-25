@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Recipe Sharing App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0fff0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: black;
+            transition: color 0.3s ease-in-out;
+            /* font-family: 'Playfair Display', serif; */
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            font-family: auto;
+            color: #045a06;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: green;
+        }
+
+        /* Underline Animation */
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background-color: green;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom styles for the logo and app name */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            /* Add padding to create space around the logo and app name */
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+            /* Smaller logo size */
+            width: auto;
+            /* Maintain aspect ratio */
+            margin-right: 10px;
+            /* Space between logo and app name */
+        }
+
+        .navbar-brand .app-name {
+            font-size: 1.5rem;
+            /* Adjust the font size of the app name */
+            font-weight: bold;
+            color: #126c1a;
+            /* Green color to match the theme */
+        }
+
+        /* Ensure the navbar is responsive */
+        .navbar-collapse {
+            flex-grow: 0;
+            /* Prevent the navbar from stretching */
+        }
+
+        /* Add padding or margin to the navbar for better spacing */
+        .navbar {
+            padding: 10px 0;
+            /* Add padding to the entire navbar */
+        }
+
+        /* Adjust the search bar and buttons for smaller screens */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                margin-top: 10px;
+                /* Add margin to nav items on smaller screens */
+            }
+
+            .form-inline {
+                margin-top: 10px;
+                /* Add margin to the search bar on smaller screens */
+            }
+
+            .btn {
+                margin-top: 10px;
+                /* Add margin to buttons on smaller screens */
+            }
+
+            /* Ensure the navbar-brand doesn't overlap on smaller screens */
+            .navbar-brand {
+                margin-right: auto;
+                /* Push the brand to the left */
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-text,
+        .profile-card {
+            flex: 1 1 100%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+
+            .contact-text,
+            .profile-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact-text {
+                flex: 2;
+            }
+
+            .profile-card {
+                flex: 1;
+            }
+        }
+
+        .contact-text {
+            max-width: 55%;
+        }
+
+        .contact-text h1,
+        h3 {
+            font-family: 'poppins';
+            font-weight: bolder;
+            text-transform: uppercase;
+            color: #2e7d32;
+            font-size: 2.5rem;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 15px rgba(76, 175, 80, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .profile-card {
+            background-color: #2e7d32;
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            max-width: 40%;
+        }
+
+        .profile-card:hover {
+            transform: scale(1.08);
+            box-shadow: 12px 12px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 22px;
+            margin: 10px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #c8e6c9;
+            transform: scale(1.2);
+        }
+
+        .animated-text {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* FAQ SECTION */
+
+        /* FAQ Container */
+        .faq-container {
+            background: linear-gradient(135deg, #d4edda, #b2dfdb);
+            /* Soft Green Theme */
+            padding: 3rem 2rem;
+            font-family: 'poppins', sans-serif;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* FAQ Title */
+        .faq-title {
+            font-size: 2rem;
+            color: #2c6e49;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Accordion Styling */
+        .faq-accordion {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* FAQ Items */
+        .faq-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        /* FAQ Headers */
+        .faq-header {
+            margin: 0;
+        }
+
+        /* FAQ Buttons */
+        .faq-button {
+            width: 100%;
+            background: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+        }
+
+        .faq-button:hover {
+            background: #388e3c;
+            transform: scale(1.02);
+        }
+
+        .faq-button:focus {
+            box-shadow: none;
+        }
+
+        /* FAQ Collapse */
+        .faq-collapse {
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* FAQ Body */
+        .faq-body {
+            padding: 15px;
+            font-size: 1rem;
+            color: #2c6e49;
+            background: #f0fdf4;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 2rem 1rem;
+            }
+
+            .faq-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-info {
+            background-color: #2e7d32;
+            padding: 40px;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-info h3 {
+            font-weight: 700;
+            color: white;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form:hover,
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form h2 {
+            color: #228B22;
+            font-weight: 700;
+            font-size: bold;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #228B22;
+            padding: 10px 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #1c7a1c;
+            box-shadow: 0 0 5px rgba(34, 139, 34, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #228B22;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #1c7a1c;
+        }
+
+        .social-links a {
+            color: #228B22;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #1c7a1c;
+            transform: translateY(-3px);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            font-size: 24px;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* Remove horizontal scrollbar from the whole page */
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* Make sure all sections fit within the viewport */
+        .containerr,
+        .row {
+            margin: 0 auto;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100vw;
+            /* Full width */
+            height: 400px;
+            /* Adjusted height */
+            overflow: hidden;
+            border-radius: 0;
+            /* No border-radius for full width */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        }
+
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(46, 125, 50, 0.9);
+            /* Pretty Green Theme */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .map-container {
+                height: 300px;
+            }
+
+            .map-overlay {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                height: 250px;
+            }
+
+            .map-overlay {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+
+        .footer {
+    background: linear-gradient(135deg, #154734, #28a745);
+    color: white;
+    margin-top: 50px;
+}
+
+.footer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #ffcc00;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer ul li a i {
+    margin-right: 8px;
+}
+
+.footer ul li a:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer .newsletter-form input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.footer .newsletter-form button {
+    background: #ffcc00;
+    color: #154734;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.footer .newsletter-form button:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+div.social-icons{
+    margin-right: 55px;
+}
+.social-icons a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+.legal-links li a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.legal-links li a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@500&display=swap');
+
+.stylish-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #157347; /* Soft green */
+    text-transform: capitalize; /* Looks more natural */
+    letter-spacing: 1px;
+    border-bottom: 2px solid #a3d9a5; /* Light green underline */
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.stylish-text:hover {
+    color: #0d5c38; /* Darker green on hover */
+    border-bottom: 2px solid #81c784; /* Slightly darker green underline */
+}
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;">
+                <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+            </a>
+
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i>
+                            About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i>
+                            Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact
+                            Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+
+                <!-- Search Bar -->
+                <!-- <form class="d-flex ms-auto me-4 flex-grow-1 flex-lg-grow-0"> 
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search Recipes" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+
+                <!-- Shopping Cart and Logout Buttons -->
+                <div class="d-flex align-items-center">
+                    <!-- <a href="#" class="btn btn-outline-primary position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a> -->
+                    <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 15px;">
+                        <i class="fas fa-heart"></i> (<span id="favCount">0</span>)
+                    </button>
+                      <script>
+                        document.getElementById('favBtn').addEventListener('click', () => {
+                      // You can navigate to a separate "favorites" page or filter favorites on the current page
+                      window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                    });
+                    </script>
+                    <button class="btn btn-outline-danger" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- starting welcome -->
+    <div class="containerr contact-container">
+        <div class="contact-text animated-text">
+            <h1>Contact Us 📫</h1>
+            <h3>Thanks for reaching out, we’d love to help you!</h3>
+            <p>Welcome to our recipe-sharing community! We believe that food is not just about taste—it’s about the
+                stories, memories, and experiences that come with it. Whether you’re a beginner learning your way around
+                the kitchen or an expert chef experimenting with new flavors, this platform is for you! 🍽️💚</p>
+
+            <p>We value every piece of feedback and love hearing from fellow food lovers. Your suggestions, recipe
+                ideas, and experiences help us grow and improve. Have a favorite dish you’d like us to feature?
+                Struggling with a tricky recipe? Want to share a cooking hack that changed your life? Feel free to reach
+                out to us! We are always excited to connect with our community and make this platform even better for
+                everyone. </p>
+
+            <p>For general inquiries, collaborations, or feedback, you can email us at
+                <strong>support@yourapp.com</strong> or fill out the contact form below. We aim to respond as soon as
+                possible because your messages mean the world to us! 💌
+            </p>
+
+            <h4>Questions about Recipes</h4>
+
+            <p>Do you need help with a recipe? Don’t worry—we’ve got you covered! Our recipe library is full of
+                step-by-step guides and detailed instructions to make cooking easy and fun. If you ever find yourself
+                stuck, check out our <a href="#" class="text-success">FAQ page</a>. You might find the answer you're
+                looking for there.</p>
+
+            <p>Still have doubts? You can also leave a comment under any recipe, and we will do our best to answer your
+                questions. Whether it’s about ingredient substitutions, cooking techniques, or serving suggestions, we
+                are here to help. Our team receives a lot of messages daily, but we truly appreciate your patience as we
+                try our best to respond to each one with care. ❤️</p>
+
+            <p>Remember, cooking is an adventure, and every dish tells a story. So, let’s explore, experiment, and enjoy
+                the beauty of flavors together! If you try any of our recipes, don’t forget to share your experience
+                with us. We’d love to hear your thoughts and see your delicious creations! 📸🍲</p>
+
+        </div>
+
+        <div class="profile-card animated-text">
+            <img src="https://64.media.tumblr.com/8aee4d970903fa5aa45f0f929ac270a6/b90abd5abc1af3bc-95/s1280x1920/2a573a2a7f9c8235b76a25d656febe374846a3a4.gif" alt="Profile Picture" class="profile-img">
+            <h2>Hi, I’m Ayesha Usman!</h2>
+            <p>I’m a passionate **Computer Science student** and a true **foodie** who loves exploring different
+                cuisines, experimenting in the kitchen, and sharing delicious recipes with the world! Ever since I was
+                young, I’ve been fascinated by the way food brings people together. That’s why I started this journey—to
+                create and share recipes that everyone can enjoy.</p>
+            <p>My goal is to make cooking fun and accessible for all, whether you're a beginner or a pro in the kitchen.
+                From traditional homemade dishes to modern fusion recipes, I love trying new flavors and techniques.
+                Let’s embark on this flavorful adventure together! 🍽️✨</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-container mt-5 fade-in">
+        <h2 class="faq-title text-center">Frequently Asked Questions</h2>
+        <div class="faq-accordion" id="customFaqAccordion">
+            <div class="faq-item">
+                <h2 class="faq-header">
+                    <button class="faq-button" type="button" data-bs-toggle="collapse" data-bs-target="#customFaq1">
+                        📌 How can I submit a recipe?
+                    </button>
+                </h2>
+                <div id="customFaq1" class="faq-collapse collapse show" data-bs-parent="#customFaqAccordion">
+                    <div class="faq-body">
+                        You can submit a recipe through our <strong>recipe submission page</strong> by filling out the
+                        form.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h2 class="faq-header">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#customFaq2">
+                        ⏳ How long does it take to get a response?
+                    </button>
+                </h2>
+                <div id="customFaq2" class="faq-collapse collapse" data-bs-parent="#customFaqAccordion">
+                    <div class="faq-body">
+                        We usually respond within <strong>24 hours</strong> during business days.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h2 class="faq-header">
+                    <button class="faq-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#customFaq3">
+                        ✏️ Can I edit my submitted recipe?
+                    </button>
+                </h2>
+                <div id="customFaq3" class="faq-collapse collapse" data-bs-parent="#customFaqAccordion">
+                    <div class="faq-body">
+                        Yes, you can edit your recipe anytime by logging into your account and accessing the dashboard.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Contact Us Section -->
+    <section class="contact-section">
+        <div class="containerr">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-md-7">
+                    <div class="contact-form animate-on-scroll">
+                        <h2>Get in Touch</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Information and Testimonials -->
+                <div class="col-md-5">
+                    <div class="contact-info animate-on-scroll">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Recipe Lane, Foodie City, FC 12345</p>
+                        <p><i class="fas fa-phone"></i> +1 (234) 567-8901</p>
+                        <p><i class="fas fa-envelope"></i> support@recipeshareapp.com</p>
+                        <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+                        <a href="https://wa.me/1234567890" class="whatsapp-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Testimonials Section -->
+                    <div class="testimonials mt-4 animate-on-scroll">
+                        <h3>What Our Users Say</h3>
+                        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <p>"Amazing support! Quick response and super helpful!" - <strong>Emily R.</strong>
+                                    </p>
+                                </div>
+                                <div class="carousel-item">
+                                    <p>"I love how easy it is to reach out. The team is great!" - <strong>James
+                                            L.</strong></p>
+                                </div>
+                                <div class="carousel-item">
+                                    <p>"Fast and efficient service. Highly recommend!" - <strong>Olivia P.</strong></p>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    </div>
+    </section>
+
+    <div class="hhh row mt-3">
+        <div class="hh col-md-12">
+            <div class="map-container animate-on-scroll">
+                <div class="map-overlay">📍 We Are Here!</div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.81627974202167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2aabc5e2f1e!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1625070000000!5m2!1sen!2sus"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+    
+<footer class="footer bg-dark text-light py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🌍 Explore</h5>
+                <ul class="list-unstyled">
+                    <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Recipes -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🔥 Trending Dishes</h5>
+                <ul class="list-unstyled">
+                    <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📍 Find Us</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+            </div>
+
+            <!-- Newsletter & Social Media -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📩 Stay Updated</h5>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email here" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <h5 class="mt-4">🤩 Follow Our Journey</h5>
+                <div class="social-icons mt-4">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline legal-links">
+                    <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                    <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom text-center mt-4">
+            <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+    <!-- Live Chat Widget -->
+    <script async src="https://embed.tawk.to/YOUR_TAWK_ID/default" charset="UTF-8" crossorigin="*"></script>
+
+
+
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/1234567890" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <script async src="https://embed.tawk.to/YOUR_TAWK_ID/default" charset="UTF-8" crossorigin="*"></script>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="homepage.js"></script>
+    <script type="module" src="favorites.js"></script>
+</body>
+
+</html>

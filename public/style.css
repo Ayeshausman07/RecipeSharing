@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* body {
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Share+Tech+Mono&display=swap');
+
+body {
+    background: url('https://img.freepik.com/free-photo/flat-lay-green-fruits-vegetables-frame_23-2149270962.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif; /* Clean modern font */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Smooth Fade-In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Center Form */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ========== Modern Form Styling ========== */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 450px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.6s ease-in-out;
+    border: 2px solid transparent;
+    transition: all 0.4s ease-in-out;
+}
+
+/* Slide Up Effect */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form Hover Effect */
+.container:hover {
+    border: 2px solid #2e7d32;
+    box-shadow: 0 15px 40px rgba(0, 100, 0, 0.3);
+}
+
+/* Form Title */
+.form-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    color: #2e7d32;
+}
+
+/* ========== Input Styling ========== */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+    outline: none;
+}
+
+/* ========== Button Styling ========== */
+button {
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    background: #2e7d32;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    background: #1b5e20;
+    transform: scale(1.05);
+}
+
+/* ========== Social Media Icons ========== */
+.icons {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.icons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.icons .google {
+    background: #db4437;
+}
+
+.icons .facebook {
+    background: #1877f2;
+}
+
+.icons button:hover {
+    transform: scale(1.05);
+}
+
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Background blur effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}

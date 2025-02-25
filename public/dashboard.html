@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <style>
+        body {
+            background: linear-gradient(to right, #a8e063, #56ab2f); /* Pretty green theme */
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Sidebar Design */
+        .sidebar {
+            background: #2c3e50;
+            height: 100vh;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .sidebar h4 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #f1c40f; /* Golden color */
+        }
+        .nav-link {
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            background: #f1c40f;
+            color: black !important;
+            border-radius: 5px;
+        }
+        .logout-btn {
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dashboard Card */
+        .dashboard {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
+            animation: fadeInBounce 1.5s ease-in-out;
+        }
+
+        /* Animation */
+        @keyframes fadeInBounce {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.02) translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar text-white position-relative">
+                <h4><i class="fas fa-chart-line"></i> Dashboard</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link text-white" href="users.html"><i class="fas fa-user"></i> Users</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="recipes.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="favouritesdashboard.html"><i class="fas fa-heart"></i> Favourites</a></li>
+                </ul>
+                <button id="logout" class="btn btn-danger logout-btn" onclick="logout()">Logout</button>
+            </nav>
+
+            <!-- Dashboard Section -->
+            <main class="col-md-10 d-flex justify-content-center align-items-center">
+                <div class="dashboard">
+                    <h2>Welcome to the Dashboard</h2>
+                    <p>Select an option from the sidebar to manage users, recipes, or favourites.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyBxRcnDYo3REAlVpHYpFVyyBg9QZYsOF9w",
+  authDomain: "login-page-67088.firebaseapp.com",
+  projectId: "login-page-67088",
+  storageBucket: "login-page-67088.firebasestorage.app",
+  messagingSenderId: "178268713114",
+  appId: "1:178268713114:web:dee11f0f1a6496810e6f23"
+};
+
+
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Logout Handler
+document.getElementById('logout').addEventListener('click', async () => {
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully.");
+    window.location.href = 'index.html';
+  } catch (error) {
+    console.error('Error signing out:', error);
+  }
+});
+
+    </script>
+    <script type="module" src="addscript.js"></script>
+    <script type="module" src="firebaseauth.js"></script>
+    <script type="module" src="homepage.js"></script>
+    
+</body>
+</html>

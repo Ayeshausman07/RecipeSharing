@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Recipes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <style>
+    .navbar-nav .nav-link {
+        position: relative;
+        font-size: 18px;
+        font-weight: 500;
+        /* color: black; */
+        transition: color 0.3s ease-in-out;
+        /* font-family: 'Playfair Display', serif; */
+        }
+
+        .navbar-light .navbar-nav .nav-link{
+    font-family: 'Poppins', serif;
+    color: #045a06;
+}
+        
+        .navbar-nav .nav-link:hover {
+        color: green;
+        }
+        
+        .fav{
+            margin-left: 10px;
+        }
+        
+        /* Underline Animation */
+        .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -3px;
+        width: 0;
+        height: 3px;
+        background-color: green;
+        transition: all 0.3s ease-in-out;
+        transform: translateX(-50%);
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+        width: 100%;
+        }
+        
+        /* Custom styles for the logo and app name */
+        .navbar-brand {
+        display: flex;
+        align-items: center;
+        padding: 10px 0; /* Add padding to create space around the logo and app name */
+        }
+        
+        .navbar-brand img {
+        max-height: 50px; /* Smaller logo size */
+        width: auto; /* Maintain aspect ratio */
+        margin-right: 10px; /* Space between logo and app name */
+        }
+        
+        .navbar-brand .app-name {
+        font-size: 1.5rem; /* Adjust the font size of the app name */
+        font-weight: bold;
+        color: #126c1a; /* Green color to match the theme */
+        }
+        
+        /* Ensure the navbar is responsive */
+        .navbar-collapse {
+        flex-grow: 0; /* Prevent the navbar from stretching */
+        }
+        
+        /* Add padding or margin to the navbar for better spacing */
+        .navbar {
+        padding: 10px 0; /* Add padding to the entire navbar */
+        }
+        
+        /* Adjust the search bar and buttons for smaller screens */
+        @media (max-width: 992px) {
+        .navbar-nav {
+        margin-top: 10px; /* Add margin to nav items on smaller screens */
+        }
+        
+        .form-inline {
+        margin-top: 10px; /* Add margin to the search bar on smaller screens */
+        }
+        
+        .btn {
+        margin-top: 10px; /* Add margin to buttons on smaller screens */
+        }
+        
+        /* Ensure the navbar-brand doesn't overlap on smaller screens */
+        .navbar-brand {
+        margin-right: auto; /* Push the brand to the left */
+        }
+        }
+
+        .footer {
+    background: linear-gradient(135deg, #154734, #28a745);
+    color: white;
+}
+
+.footer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #ffcc00;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer ul li a i {
+    margin-right: 8px;
+}
+
+.footer ul li a:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer .newsletter-form input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.footer .newsletter-form button {
+    background: #ffcc00;
+    color: #154734;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.footer .newsletter-form button:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+.legal-links li a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.legal-links li a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.animated-heading {
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    animation: bounce 1.5s infinite alternate;
+}
+
+.animated-heading i {
+    animation: pop 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@500&display=swap');
+
+.stylish-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #157347; /* Soft green */
+    text-transform: capitalize; /* Looks more natural */
+    letter-spacing: 1px;
+    border-bottom: 2px solid #a3d9a5; /* Light green underline */
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.stylish-text:hover {
+    color: #0d5c38; /* Darker green on hover */
+    border-bottom: 2px solid #81c784; /* Slightly darker green underline */
+}
+
+
+        </style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;"> <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+            </a>
+    
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i> Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+    
+                <!-- Search Bar -->
+                <!-- <form class="d-flex ms-auto me-4 flex-grow-1 flex-lg-grow-0"> 
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search Recipes" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+    
+                <!-- Shopping Cart and Logout Buttons -->
+                <div class="d-flex align-items-center">
+                    <!-- <a href="#" class="btn btn-outline-primary position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a> -->
+                    <div class="d-flex align-items-center">
+                        <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 15px;">
+                            <i class="fas fa-heart"></i> (<span id="favCount">0</span>)
+                        </button>
+                          <script>
+                            document.getElementById('favBtn').addEventListener('click', () => {
+                          // You can navigate to a separate "favorites" page or filter favorites on the current page
+                          window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                        });
+                        </script>
+                    <button class="btn btn-outline-danger" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 text-center">
+        <h2 class="text-success fw-bold mb-4 animated-heading">
+            <i class="fas fa-utensils text-warning"></i> Discover Your <span class="text-danger">Favorite Recipes</span>  
+            <i class="fas fa-heart text-danger"></i>
+        </h2>
+        <p class="text-muted">Handpicked delicious recipes just for you! 🍽️✨</p>
+        <div id="favoriteRecipesList" class="row"></div>
+    </div>
+    
+ 
+<footer class="footer bg-dark text-light py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🌍 Explore</h5>
+                <ul class="list-unstyled">
+                    <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Recipes -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🔥 Trending Dishes</h5>
+                <ul class="list-unstyled">
+                    <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📍 Find Us</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+            </div>
+
+            <!-- Newsletter & Social Media -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📩 Stay Updated</h5>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email here" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <div class="social-icons mt-4">
+                    <h5>🤩 Follow Our Journey</h5>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline legal-links">
+                    <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                    <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom text-center mt-4">
+            <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+        </div>
+    </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <script type="module" src="favorites.js"></script>
+
+  <script>
+    const loadFavoriteRecipes = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "recipes"));
+        const favoriteRecipes = snapshot.docs.filter(doc => doc.data().isFavorite);
+
+        const recipeList = document.getElementById('favoriteRecipesList');
+        recipeList.innerHTML = ''; // Clear any existing recipes
+
+        favoriteRecipes.forEach((doc) => {
+          const recipe = doc.data();
+          const recipeElement = document.createElement('div');
+          recipeElement.classList.add('card', 'mb-3');
+          recipeElement.innerHTML = `
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${recipe.imageURL}" class="img-fluid rounded-start" alt="Recipe Image">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${recipe.title}</h5>
+                  <p class="card-text">${recipe.description.substring(0, 100)}...</p>
+                  <p class="card-text"><small class="text-muted">Author: ${recipe.author}</small></p>
+                </div>
+              </div>
+            </div>
+          `;
+          recipeList.appendChild(recipeElement);
+        });
+      } catch (e) {
+        console.error("Error getting favorite recipes: ", e);
+      }
+    };
+
+    // Load the favorite recipes when the page loads
+    window.onload = loadFavoriteRecipes;
+  </script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
+<!-- <script type="module" src="recipeDetailss.js"></script> -->
+
+<script type="module" src="homepage.js"></script>
+</body>
+</html>

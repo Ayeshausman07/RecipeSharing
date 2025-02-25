@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App || Firebase</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </body>
+    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+    /* Animated Join Button */
+    .join-btn {
+        background: linear-gradient(90deg, #28a745, #32cd32);
+        /* Green gradient */
+        color: white !important;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.4s ease-in-out;
+        box-shadow: 0 4px 10px rgba(26, 36, 29, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Hover Effect */
+    .join-btn:hover {
+        background: linear-gradient(90deg, #32cd51, #28a745);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    /* Glowing Border Animation */
+    .join-btn::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(90deg, #28a745, #32cd32);
+        z-index: -1;
+        filter: blur(8px);
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+    }
+
+    .join-btn:hover::before {
+        opacity: 1;
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+        .join-btn {
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+    }
+
+    /* Smooth Fade-in Effect */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    /* Green Highlight Effect */
+    .text-highlight {
+        color: green;
+        position: relative;
+        display: inline-block;
+    }
+
+    .text-highlight::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: lightgreen;
+        bottom: 0;
+        left: 0;
+        opacity: 0.6;
+    }
+
+    /* Sliding Text Animation */
+    .slide-in {
+        opacity: 0;
+        transform: translateX(-30px);
+        animation: slideIn 1s ease-out forwards;
+    }
+
+    /* Delay for each line */
+    .delay-1 {
+        animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+        animation-delay: 0.4s;
+    }
+
+    /* Animated Button Pulse */
+    .pulse-btn {
+        position: relative;
+        overflow: hidden;
+        animation: pulse 1.5s infinite;
+    }
+
+    /* Hover Effect with Glowing Shadow */
+    .hover-glow:hover {
+        box-shadow: 0px 0px 15px rgba(0, 255, 100, 0.6);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .display-3 {
+            font-size: 2rem;
+        }
+
+        .btn-lg {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+    }
+
+    .navbar {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar-brand img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar-brand:hover img {
+        transform: scale(1.1);
+    }
+
+    .nav-link:hover {
+        color: #28a745 !important;
+        /* Green hover effect */
+        transition: color 0.3s ease-in-out;
+    }
+
+    .spinning-image {
+        animation: spin 5s linear infinite;
+        filter: drop-shadow(15px 15px 20px rgba(0, 0, 0, 0.95));
+
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Ensure hero section does not overlap navbar */
+    .Bcontainer {
+        margin-top: 40px;
+        /* Adjust as needed based on navbar height */
+    }
+
+    .transition-effect {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .transition-effect:hover {
+        transform: scale(1.05);
+    }
+
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background: rgba(0, 0, 0, 0.4);  */
+        /* Dark overlay for readability */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .feature-icon-small {
+        width: 60px;
+        height: 60px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 30px;
+        /* Smaller size */
+        height: 30px;
+        font-size: 14px;
+        /* Adjust icon size */
+        color: rgb(252, 178, 178);
+        /* White arrows */
+        border-radius: 50%;
+        /* Circular buttons */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Ensure buttons don't overlap content */
+    .swiper-button-prev {
+        left: -3px;
+    }
+
+    .swiper-button-next {
+        right: -3px;
+    }
+
+    /* Hide buttons on small screens */
+    @media (max-width: 768px) {
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+        }
+    }
+
+    .container .btn-success {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .container .btn-success:hover {
+        background-color: #28a745;
+        transform: scale(1.05);
+    }
+
+    .feature-card {
+        background: linear-gradient(135deg, #ffffff, #f0fff0);
+        /* Gradient background */
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent;
+        /* Transparent border for hover effect */
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0, 128, 0, 0.1), rgba(0, 128, 0, 0.05));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 15px rgba(0, 128, 0, 0.3);
+        background: linear-gradient(135deg, #f0fff0, #ffffff);
+        /* Reverse gradient on hover */
+        border-color: #28a745;
+        /* Green border on hover */
+    }
+
+    .feature-card:hover::before {
+        opacity: 1;
+        /* Show the gradient overlay on hover */
+    }
+
+    .feature-icon {
+        font-size: 40px;
+        color: #28a745;
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: inline-block;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.2) rotate(15deg);
+        /* Scale and rotate icon on hover */
+        color: #1e7e34;
+        /* Darker green on hover */
+    }
+
+    .feature-card::after {
+        content: '';
+        position: absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 128, 0, 0.1);
+        transition: bottom 0.3s ease;
+        z-index: 0;
+    }
+
+    .feature-card:hover::after {
+        bottom: 0;
+        /* Slide up the overlay on hover */
+    }
+
+    .featured-recipes {
+        background-color: #f8f9fa;
+    }
+
+    /* .recipe-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 20px;
+        position: relative;
+    } */
+
+    /* .recipe-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    } */
+
+    /* Recipe Image Styling */
+    /* .recipe-image-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0px 10px 25px rgba(0, 128, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+} */
+
+/* .recipe-image-container img:hover {
+    transform: scale(1.05);
+} */
+
+/* Ingredients List */
+.ingredients-list {
+    max-width: 400px;
+    margin: auto;
+    padding-left: 0;
+}
+
+.ingredients-list li {
+    font-size: 16px;
+    background: rgba(0, 128, 0, 0.1);
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.ingredients-list li i {
+    font-size: 18px;
+    color: green;
+    margin-right: 10px;
+}
+
+/* Instructions */
+.recipe-instructions {
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 10px;
+    background: rgba(0, 128, 0, 0.05);
+    border-radius: 10px;
+}
+
+/* Hover Animation */
+.recipe-modal .modal-content:hover {
+    box-shadow: 0px 20px 40px rgba(0, 128, 0, 0.4);
+}
+
+    .recipe-card:hover .recipe-img {
+        transform: scale(1.1);
+    }
+
+    /* Hover Overlay Effect */
+    .recipe-hover-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .recipe-card:hover .recipe-hover-overlay {
+        opacity: 1;
+    }
+
+    .recipe-hover-overlay i {
+        font-size: 30px;
+        animation: pulse 1s infinite alternate;
+    }
+
+    /* Cool Eye Icon Animation */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.2);
+        }
+    }
+
+/* 
+    .recipe-card img {
+        height: 300px;
+        object-fit: cover;
+    }  */
+
+    /* .list-unstyled li {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .list-unstyled li i {
+        color: green;
+        font-size: 18px;
+    } */
+
+    footer {
+        background-color: #126c1a;
+        /* Green theme */
+        color: white;
+        padding: 40px 0;
+        margin-top: 50px;
+    }
+
+    footer h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    footer a {
+        color: white;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: #f8f9fa;
+        text-decoration: underline;
+    }
+
+    footer .social-icons a {
+        font-size: 24px;
+        margin-right: 15px;
+    }
+
+    footer .newsletter-form {
+        display: flex;
+        justify-content: center;
+    }
+
+    footer .newsletter-form input {
+        width: 250px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+    }
+
+    footer .newsletter-form button {
+        background-color: #218838;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    }
+
+    footer .newsletter-form button:hover {
+        background-color: #1e7e34;
+    }
+
+    footer .footer-bottom {
+        background-color: #218838;
+        padding: 10px 0;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .membership-section {
+        text-align: center;
+        padding: 50px 20px;
+        background: linear-gradient(135deg, #dcedc8, #a5d6a7);
+        border-radius: 15px;
+        margin: 50px auto;
+        width: 90%;
+        max-width: 800px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.5s ease-in-out;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .membership-section:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 0 20px rgba(76, 175, 80, 0.5);
+        /* Glow effect */
+        background: linear-gradient(135deg, #a5d6a7, #dcedc8);
+        /* Reverse gradient on hover */
+    }
+
+    .membership-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+    }
+
+    .membership-section:hover::before {
+        opacity: 1;
+        /* Radial gradient overlay on hover */
+    }
+
+    .membership-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .membership-table th,
+    .membership-table td {
+        padding: 15px;
+        border: 1px solid #81c784;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .membership-table th {
+        background-color: #4caf50;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .membership-table th::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease-in-out;
+    }
+
+    .membership-table th:hover::after {
+        left: 100%;
+        /* Shimmer effect on hover */
+    }
+
+    .membership-table td {
+        background-color: #ffffff;
+    }
+
+    .membership-table tr:hover td {
+        background-color: #c8e6c9;
+        transform: translateX(10px);
+        /* Slight slide effect on hover */
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes glow {
+        0% {
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        50% {
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+        }
+
+        100% {
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+    }
+
+    .toggle-plan {
+        margin-top: 20px;
+        background-color: #388e3c;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .toggle-plan::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s ease-in-out;
+        pointer-events: none;
+    }
+
+    .toggle-plan:hover {
+        background-color: #2e7d32;
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .col-md-4 {
+        box-shadow: 0 8px 15px rgba(51, 245, 8, 0.641);
+    }
+
+    .toggle-plan:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+        /* Ripple effect on hover */
+    }
+
+    .recipe-carousel-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        max-height: 550px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .recipe-carousel .carousel-inner {
+        border-radius: 15px;
+    }
+
+    .recipe-carousel .carousel-item {
+        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+
+    .recipe-carousel .carousel-caption {
+        background: rgba(0, 100, 0, 0.6);
+        padding: 20px;
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+
+    .recipe-carousel h2 {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .recipe-carousel p {
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    .btn-discover {
+        background-color: #66bb6a;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-discover:hover {
+        background-color: #388e3c;
+    }
+
+
+    .modal-body {
+        position: relative;
+        background: linear-gradient(135deg, #f5f5f5, #ffffff);
+        border-radius: 20px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+
+/* 
+    .recipe-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+
+    #recipeImage {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid #28a745;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #recipeImage:hover {
+        transform: scale(1.1);
+    }
+
+    /* Close Icon Styling */
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 22px;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1051;
+        /* Ensures it's above everything */
+    }
+
+    /* Hover Effect */
+    .close-modal:hover {
+        background: red;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .recipe-modal .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.recipe-card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    background: white;
+}
+
+.recipe-image-container {
+    position: relative;
+    width: 100%;
+    height: 250px; /* Adjust to match design */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Styling */
+.recipe-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+</style>
+
+<body>
+
+
+    <!-- Navbar -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+        <div class="container">
+            <!-- Left Side: Logo & Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;"> <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+                <!-- App name with styling -->
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Center: Navigation Links -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link fw-semibold text-white px-4 py-2 rounded-pill join-btn">
+                            Join Our Community
+                        </a>
+
+                    </li>
+                    <!-- Add more links here if needed -->
+                </ul>
+            </div>
+
+            <!-- Right Side: Buttons -->
+            <div class="d-flex">
+                <button type="button"
+                    class="btn btn-outline-success me-2 px-4 py-2 rounded-pill shadow-sm">Login</button>
+                <button type="button" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">Sign-up</button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- #1 Hero section  -->
+    <div class="container Bcontainer col-xxl-10 px-4 py-5 mt-2">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6 text-center">
+                <img src="assets/outmain2.png" class="d-block mx-lg-auto img-fluid spinning-image"
+                    alt="Bootstrap Themes" width="800" height="600" loading="lazy">
+            </div>
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 fw-bold text-body-emphasis lh-1 mb-4 fade-in">
+                    Elevate Your Cooking with <span class="text-highlight">Flavorful</span> Creations!
+                </h1>
+                <p class="lead slide-in">🌿 Unleash your inner chef with simple, delightful recipes.</p>
+                <p class="lead slide-in delay-1">From quick bites to gourmet feasts, we've got you covered.</p>
+                <p class="lead slide-in delay-2">Start your journey to flavorful meals today! 🍲</p>
+
+                <div class="d-grid gap-3 d-md-flex justify-content-md-start">
+                    <button type="button" class="btn btn-success btn-lg px-5 py-3 rounded-pill shadow pulse-btn">Start
+                        Cooking</button>
+                    <button type="button"
+                        class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill shadow hover-glow">Discover
+                        More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center my-5">
+        <h2 class="fw-bold text-success">🌟 Why Join Us? 🌟</h2>
+        <p class="text-muted">Experience the best features of our recipe-sharing platform.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-utensils feature-icon"></i>
+                    <h5 class="mt-3">Expert-Crafted Recipes</h5>
+                    <p class="text-muted">Get recipes from top chefs & food enthusiasts.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-star feature-icon"></i>
+                    <h5 class="mt-3">Personalized Experience</h5>
+                    <p class="text-muted">Save & rate your favorite recipes.and Discover new ones</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-globe feature-icon"></i>
+                    <h5 class="mt-3">Global Cuisine</h5>
+                    <p class="text-muted">Explore flavors from around the world.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt feature-icon"></i>
+                    <h5 class="mt-3">Easy-to-Use</h5>
+                    <p class="text-muted">Access from mobile & desktop anytime.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured Recipes Section -->
+    <section class="featured-recipes py-5">
+        <div class="container">
+            <h2 class="text-center mb-4 text-success fw-bold">🌟 Featured Recipes</h2>
+            <div class="row g-4" id="recipesContainer"></div>
+        </div>
+    </section>
+
+    <!-- Modal for Recipe Details -->
+    <!-- Recipe Modal -->
+    <div class="modal fade recipe-modal" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content shadow-lg rounded-4 animate__animated animate__fadeInUp">
+
+                <!-- Close Icon -->
+                <!-- Close Icon -->
+                <div class="modal-header border-0 position-relative ">
+                    <span class="close-modal" role="button" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+
+
+                <!-- Recipe Content -->
+                <div class="modal-body text-center p-4">
+
+                    <!-- Recipe Image with Glow Effect -->
+                    <div class="recipe-image-container">
+                        <img id="recipeImage"
+                            class="img-fluid rounded-circle shadow-lg mb-4 animate__animated animate__zoomIn" alt="">
+                    </div>
+
+                    <!-- Recipe Title -->
+                    <h3 id="recipeTitle"
+                        class="fw-bold text-success text-uppercase animate__animated animate__fadeInDown"></h3>
+
+                    <!-- Ingredients Section -->
+                    <h5 class="fw-bold text-dark mt-4">
+                        <i class="fas fa-utensils me-2 text-success"></i> Ingredients:
+                    </h5>
+                    <ul id="recipeIngredients"
+                        class="list-unstyled text-start mx-auto ingredients-list animate__animated animate__fadeIn">
+                    </ul>
+
+                    <!-- Instructions Section -->
+                    <h5 class="fw-bold text-dark mt-3">
+                        <i class="fas fa-book-open me-2 text-success"></i> Instructions:
+                    </h5>
+                    <p id="recipeInstructions" class="recipe-instructions animate__animated animate__fadeIn"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="membership-section">
+        <h2>Membership & Subscription Plans</h2>
+        <p>Choose the best plan for your cooking journey!</p>
+        <button class="toggle-plan" onclick="toggleFeatures()">Subscribe Now</button>
+        <table class="membership-table">
+            <tr>
+                <th>Features</th>
+                <th>Free</th>
+                <th>Premium</th>
+            </tr>
+            <tr>
+                <td>Access to Recipes</td>
+                <td>✔️</td>
+                <td>✔️</td>
+            </tr>
+            <tr>
+                <td>Exclusive Recipes</td>
+                <td>❌</td>
+                <td>✔️</td>
+            </tr>
+            <tr>
+                <td>Ad-Free Experience</td>
+                <td>❌</td>
+                <td>✔️</td>
+            </tr>
+            <tr>
+                <td>Meal Planners</td>
+                <td>❌</td>
+                <td>✔️</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="recipeCarousel" class="carousel slide recipe-carousel-container recipe-carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://64.media.tumblr.com/e25af74e389e7ea596bbcd5a01cbd8cb/tumblr_nnqb0fDF951ro9rq7o4_400.gif"
+                    class="d-block w-100" alt="Healthy Food">
+                <div class="carousel-caption">
+                    <h2>Discover New Flavors</h2>
+                    <p>Explore a world of delicious and healthy recipes curated by expert chefs.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.gifer.com/1woS.gif" class="d-block w-100" alt="Desserts">
+                <div class="carousel-caption">
+                    <h2>Sweeten Your Day</h2>
+                    <p>Try mouth-watering desserts and treats for every occasion.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.gifer.com/9Csj.gif" class="d-block w-100" alt="Fast Food">
+                <div class="carousel-caption">
+                    <h2>Quick & Easy Recipes</h2>
+                    <p>Short on time? Cook delicious meals in minutes with our quick recipes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let carouselItems = document.querySelectorAll(".carousel-item");
+            let currentIndex = 0;
+
+            function showNextSlide() {
+                carouselItems[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % carouselItems.length;
+                carouselItems[currentIndex].classList.add("active");
+            }
+
+            setInterval(showNextSlide, 2000); // Change image every 2 seconds
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleFeatures() {
+            document.querySelector('.membership-table').classList.toggle('fadeIn');
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Recipes -->
+                <div class="col-md-3">
+                    <h5>Popular Recipes</h5>
+                    <ul class="list-unstyled popular-recipes">
+                        <li><a href="#">Spaghetti Carbonara</a></li>
+                        <li><a href="#">Chicken Tikka Masala</a></li>
+                        <li><a href="#">Vegetable Stir Fry</a></li>
+                        <li><a href="#">Chocolate Cake</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-md-3">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Recipe Lane, Food City, FC 12345</p>
+                        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                        <p><i class="fas fa-envelope"></i> info@recipesharingsite.com</p>
+                    </div>
+                </div>
+
+                <!-- Newsletter Subscription -->
+                <div class="col-md-3">
+                    <h5>Subscribe to Our Newsletter</h5>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="social-icons mt-4">
+                        <h5>Follow Us</h5>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <ul class="list-inline legal-links">
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2023 Recipe Sharing Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            loopedSlides: 6,  // Helps in looping properly
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 }
+            }
+        });
+
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Select all buttons on the page
+            const buttons = document.querySelectorAll("button");
+
+            // Add click event to each button
+            buttons.forEach(button => {
+                button.addEventListener("click", function () {
+                    window.location.href = "outhomee.html"; // Redirect to the login page
+                });
+            });
+        });
+
+        const recipes = [
+            {
+                id: 1,
+                title: "Delicious Pasta",
+                image: "https://img.freepik.com/premium-photo/bowl-spaghetti-with-tomato-sauce-basil-white-background_902639-30397.jpg?w=360",
+                ingredients: [
+                    { name: "Pasta", icon: "fa-bowl-rice" },
+                    { name: "Tomato Sauce", icon: "fa-pepper-hot" },
+                    { name: "Parmesan Cheese", icon: "fa-cheese" },
+                    { name: "Basil Leaves", icon: "fa-seedling" }
+                ],
+                instructions: "Boil pasta until al dente. Add tomato sauce and cook for 5 minutes. Top with Parmesan cheese and fresh basil."
+            },
+            {
+                id: 2,
+                title: "Classic Burger",
+                image: "https://img.freepik.com/premium-photo/delicious-burger-plate-isolated-white-background-top-view-delicious-burger_641503-31284.jpg",
+                ingredients: [
+                    { name: "Beef Patty", icon: "fa-hamburger" },
+                    { name: "Lettuce", icon: "fa-leaf" },
+                    { name: "Cheese", icon: "fa-cheese" },
+                    { name: "Bun", icon: "fa-bread-slice" }
+                ],
+                instructions: "Grill beef patty for 3-4 minutes per side. Assemble with lettuce, cheese, and bun. Serve hot!"
+            },
+            {
+                id: 3,
+                title: "Healthy Salad",
+                image: "https://thumbs.dreamstime.com/b/healthy-lunch-bowl-grilled-chicken-fresh-vegetables-quinoa-isolated-white-healthy-lunch-bowl-grilled-chicken-150630187.jpg",
+                ingredients: [
+                    { name: "Grilled Chicken", icon: "fa-drumstick-bite" },
+                    { name: "Lettuce", icon: "fa-seedling" },
+                    { name: "Tomatoes", icon: "fa-pepper-hot" },
+                    { name: "Avocado", icon: "fa-apple-alt" }
+                ],
+                instructions: "Chop all ingredients and mix in a bowl. Drizzle with olive oil and serve fresh."
+            }
+        ];
+
+        // Dynamically add recipe cards
+        const recipesContainer = document.getElementById("recipesContainer");
+
+        recipes.forEach(recipe => {
+            const recipeCard = document.createElement("div");
+            recipeCard.classList.add("col-lg-4", "col-md-6", "col-sm-12");
+            recipeCard.innerHTML = `
+    <div class="card recipe-card shadow-lg border-0 rounded-4 overflow-hidden position-relative" 
+         onclick="openRecipe(${recipe.id})">
+        
+        <!-- Image with Hover Effect -->
+        <div class="recipe-image-container">
+            <img src="${recipe.image}" class="card-img-top recipe-img" alt="${recipe.title}">
+        </div>
+
+        <div class="card-body text-center">
+            <!-- Title with Fade-In Animation -->
+            <h5 class="card-title fw-bold text-success animate__animated animate__fadeInDown">${recipe.title}</h5>
+        </div>
+
+        <!-- Hover Overlay for a Cool Effect -->
+        <div class="recipe-hover-overlay">
+            <i class="fas fa-eye"></i>
+            <p class="fw-bold mt-2">View Recipe</p>
+        </div>
+    </div>
+`;
+
+            recipesContainer.appendChild(recipeCard);
+        });
+
+        // Open modal with recipe details
+        function openRecipe(id) {
+            const recipe = recipes.find(r => r.id === id);
+            if (!recipe) return;
+
+            document.getElementById("recipeTitle").innerText = recipe.title;
+            document.getElementById("recipeImage").src = recipe.image;
+            document.getElementById("recipeIngredients").innerHTML = recipe.ingredients
+                .map(ing => `<li><i class="fas ${ing.icon} text-success"></i> ${ing.name}</li>`)
+                .join("");
+            document.getElementById("recipeInstructions").innerText = recipe.instructions;
+
+            const recipeModal = new bootstrap.Modal(document.getElementById("recipeModal"));
+            recipeModal.show();
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const closeModal = document.querySelector(".close-modal");
+
+            closeModal.addEventListener("click", () => {
+                const recipeModal = document.getElementById("recipeModal");
+                const modalInstance = bootstrap.Modal.getInstance(recipeModal);
+                if (modalInstance) {
+                    modalInstance.hide(); // Close modal
+                }
+            });
+        });
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

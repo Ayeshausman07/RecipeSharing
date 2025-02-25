@@ -1,0 +1,338 @@
+
+
+.navbar-nav .nav-link {
+    position: relative;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 6px;
+    /* color: black; */
+    transition: color 0.3s ease-in-out;
+    /* font-family: 'Playfair Display', serif; */
+    }
+    
+
+.navbar-light .navbar-nav .nav-link{
+    font-family: 'Poppins', serif;
+    color: #045a06;
+}
+    .navbar-nav .nav-link:hover {
+    color: green;
+    }
+    
+    /* Underline Animation */
+    .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 0;
+    height: 3px;
+    background-color: green;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+    }
+    
+    .navbar-nav .nav-link:hover::after {
+    width: 100%;
+    }
+    
+    /* Custom styles for the logo and app name */
+    .navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 10px 0; /* Add padding to create space around the logo and app name */
+    }
+    
+    .navbar-brand img {
+    max-height: 50px; /* Smaller logo size */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between logo and app name */
+    }
+    
+    .navbar-brand .app-name {
+    font-size: 1.5rem; /* Adjust the font size of the app name */
+    font-weight: bold;
+    color: #126c1a; /* Green color to match the theme */
+    }
+    
+    /* Ensure the navbar is responsive */
+    .navbar-collapse {
+    flex-grow: 0; /* Prevent the navbar from stretching */
+    }
+    
+    /* Add padding or margin to the navbar for better spacing */
+    .navbar {
+    padding: 10px 0; /* Add padding to the entire navbar */
+    }
+    
+    /* Adjust the search bar and buttons for smaller screens */
+    @media (max-width: 992px) {
+    .navbar-nav {
+    margin-top: 10px; /* Add margin to nav items on smaller screens */
+    }
+    
+    .form-inline {
+    margin-top: 10px; /* Add margin to the search bar on smaller screens */
+    }
+    
+    .btn {
+    margin-top: 10px; /* Add margin to buttons on smaller screens */
+    }
+    
+    /* Ensure the navbar-brand doesn't overlap on smaller screens */
+    .navbar-brand {
+    margin-right: auto; /* Push the brand to the left */
+    }
+    }
+
+    /* Modern Recipe Card */
+.recipe-card {
+  background: #f0fff4; /* Light green */
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Recipe Image */
+.recipe-img {
+  width: 100px; /* Smaller image */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%; /* Circular image */
+  transition: transform 0.3s ease;
+}
+
+/* Image Hover Effect */
+.recipe-card:hover .recipe-img {
+  transform: scale(1.1);
+}
+
+/* Buttons */
+.btn-outline-success {
+  border-color: #38a169;
+  color: #38a169;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background: #38a169;
+  color: #fff;
+}
+
+.btn-success {
+  background: #38a169;
+  border-color: #38a169;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background: #2f855a;
+}
+
+
+
+
+    .containerr {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+  
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2e7d32; /* Dark green */
+        text-align: center;
+        margin-bottom: 30px;
+      }
+  
+     /* Share Recipe Title */
+     .share-recipe-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2d6a4f; /* Dark green */
+      animation: fadeIn 1s ease-in-out;
+  }
+
+  /* Button Styling */
+  #addRecipeBtn {
+      background-color: #38a169; /* Green */
+      border: none;
+      display: block;
+      margin: 0 auto;
+      font-size: 18px;
+      transition: all 0.3s ease-in-out;
+  }
+
+  #addRecipeBtn:hover {
+      background-color: #2f855a;
+      transform: scale(1.05);
+  }
+
+  /* Form Styling */
+  #recipeFormContainer {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: scale(0.9);
+  }
+
+  /* Show Form Animation */
+  #recipeFormContainer.show {
+      opacity: 1;
+      transform: scale(1);
+  }
+
+  /* Input Styling */
+  .form-control {
+      border-radius: 8px;
+      border: 1px solid #c3e6cb;
+  }
+
+  /* Submit Button */
+  #submitBtn {
+      background-color: #28a745;
+      border: none;
+      transition: all 0.3s ease;
+  }
+
+  #submitBtn:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+  }
+
+  /* Image Preview */
+  #imagePreview {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+  }
+
+  /* Fade In Animation */
+  @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+
+
+  .footer {
+    background: linear-gradient(135deg, #154734, #28a745);
+    color: white;
+}
+
+.footer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #ffcc00;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer ul li a i {
+    margin-right: 8px;
+}
+
+.footer ul li a:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer .newsletter-form input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.footer .newsletter-form button {
+    background: #ffcc00;
+    color: #154734;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.footer .newsletter-form button:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+.legal-links li a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.legal-links li a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Background blur effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}

@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .navbar-nav .nav-link {
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            /* color: black; */
+            transition: color 0.3s ease-in-out;
+            /* font-family: 'Playfair Display', serif; */
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            font-family: 'Poppins', serif;
+            color: #045a06;
+        }
+
+
+        .navbar-nav .nav-link:hover {
+            color: green;
+        }
+
+        /* Underline Animation */
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -3px;
+            width: 0;
+            height: 3px;
+            background-color: green;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Custom styles for the logo and app name */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            /* Add padding to create space around the logo and app name */
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+            /* Smaller logo size */
+            width: auto;
+            /* Maintain aspect ratio */
+            margin-right: 10px;
+            /* Space between logo and app name */
+        }
+
+        .navbar-brand .app-name {
+            font-size: 1.5rem;
+            /* Adjust the font size of the app name */
+            font-weight: bold;
+            color: #126c1a;
+            /* Green color to match the theme */
+        }
+
+        /* Ensure the navbar is responsive */
+        .navbar-collapse {
+            flex-grow: 0;
+            /* Prevent the navbar from stretching */
+        }
+
+        /* Add padding or margin to the navbar for better spacing */
+        .navbar {
+            padding: 10px 0;
+            /* Add padding to the entire navbar */
+        }
+
+        /* Adjust the search bar and buttons for smaller screens */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                margin-top: 10px;
+                /* Add margin to nav items on smaller screens */
+            }
+
+            .form-inline {
+                margin-top: 10px;
+                /* Add margin to the search bar on smaller screens */
+            }
+
+            .btn {
+                margin-top: 10px;
+                /* Add margin to buttons on smaller screens */
+            }
+
+            /* Ensure the navbar-brand doesn't overlap on smaller screens */
+            .navbar-brand {
+                margin-right: auto;
+                /* Push the brand to the left */
+            }
+        }
+
+        /* General Section Styling */
+        .about-section-unique {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+        }
+
+        /* Content Styling */
+        .about-content-unique {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Title with Gradient Text Effect */
+        .about-title-unique {
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #43a047, #1b5e20);
+            -webkit-background-clip: text;
+            background-clip: text;
+            /* Added standard version */
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 5px rgba(0, 128, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Underline Animation */
+        .about-title-unique::after {
+            content: "";
+            width: 100%;
+            height: 4px;
+            background: #43a047;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .about-title-unique:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Text Styling */
+        .about-text-unique {
+            font-size: 1.2rem;
+            color: #2e7d32;
+            line-height: 1.6;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .about-text-unique:hover {
+            transform: scale(1.02);
+        }
+
+        /* Image Styling with Floating Animation */
+        .about-image-unique img {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            animation: floatAnimation 3s infinite alternate ease-in-out;
+        }
+
+        /* Floating Effect */
+        @keyframes floatAnimation {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Hover Effect on Image */
+        .about-image-unique img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Section Styling */
+        .about-section {
+            padding: 70px 0;
+        }
+
+        /* Typography */
+        .about-heading {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #2e7d32;
+            text-align: center;
+        }
+
+        /* Text with Hover Effect */
+        .about-text {
+            font-size: 1.2rem;
+            color: #388e3c;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Text Shadow Effect */
+        .about-text:hover {
+            text-shadow: 2px 2px 6px rgba(0, 128, 0, 0.3);
+        }
+
+        /* Image Zoom Effect */
+        .about-img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.2);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        }
+
+        /* Hover Effect */
+        .about-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reset & Global Styles */
+        /* 🌿 Global Styling */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f2f8f3;
+            text-align: center;
+        }
+
+        /* 📊 Section Styling */
+        .food-stats-container {
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #e8f5e9, #f2f8f3);
+        }
+
+        .food-stats-container h2 {
+            font-size: 2.5rem;
+            color: #2e7d32;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* 🌟 Stats Grid */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* 📌 Stat Card */
+        .stat-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            width: 290px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideUp 0.8s ease-in-out forwards;
+        }
+
+        /* 🎨 Hover Effects */
+        .stat-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 🎭 Animated Background Effect */
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            width: 120%;
+            height: 100%;
+            background: rgba(76, 175, 80, 0.1);
+            top: -100%;
+            left: -10%;
+            transform: rotate(10deg);
+            transition: top 0.4s ease-in-out;
+        }
+
+        .stat-card:hover::before {
+            top: 0;
+        }
+
+        /* 🍽️ Stat Icons */
+        .stat-icon {
+            font-size: 3.5rem;
+            color: #388e3c;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out 0.3s forwards;
+        }
+
+        /* 🔢 Counter Text */
+        .stat-card h3 {
+            font-size: 1.8rem;
+            color: #1b5e20;
+            font-weight: bold;
+        }
+
+        .stat-card p {
+            color: #555;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+
+        /* 🏆 Awards Section */
+        .awards-section {
+            margin-top: 50px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-in-out 0.5s forwards;
+        }
+
+        .awards-section h3 {
+            font-size: 2rem;
+            color: #2e7d32;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        /* 🏅 Awards Icons */
+        .awards-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            color: #ff9800;
+            transition: transform 0.3s ease;
+        }
+
+        .award-icon:hover {
+            transform: rotate(10deg) scale(1.2);
+        }
+
+        /* 🖥️ Responsive Design */
+        @media (max-width: 768px) {
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* 🔥 Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .recipe-card {
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .star-rating {
+            color: #ff9800;
+        }
+
+        .modal-content {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        /* General Styling */
+        body {
+            background-color: #f5fff5;
+            /* Light Greenish Background */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🌿 General Container */
+        .containerr {
+            max-width: 900px;
+            margin: auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* 🌟 Section Title */
+        h2.text-center {
+            color: #2e7d32;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            text-transform: uppercase;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        h2.text-center::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #388e3c;
+            margin: 8px auto 0;
+            border-radius: 5px;
+        }
+
+        /* 🎨 Dropdown Filters */
+        .form-select {
+            border: 2px solid #81c784;
+            transition: 0.3s;
+            background: #f1f8e9;
+            font-weight: 500;
+        }
+
+        .form-select:focus {
+            border-color: #388e3c;
+            box-shadow: 0px 0px 12px rgba(56, 142, 60, 0.5);
+        }
+
+        /* 🍽 Recipe Cards */
+        #recipeList .card {
+            border: none;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #f9fff4;
+        }
+
+        #recipeList .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .modal-content {
+            animation: fadeIn 0.4s ease-in-out;
+            border-radius: 12px;
+            box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .recipe-modal {
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* Modal Header */
+        .modal-header {
+            border-bottom: none;
+            padding: 15px;
+            background: linear-gradient(to right, #ff9800, #ff5722);
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .modal-header .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* 💰 Payment Modal */
+        #paidRecipeModal .modal-body {
+            background-color: #e8f5e9;
+            border-radius: 12px;
+        }
+
+        #paidRecipeModal .btn-success {
+            background-color: #388e3c;
+            border: none;
+            transition: 0.3s ease-in-out;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        #paidRecipeModal .btn-success:hover {
+            background-color: #2e7d32;
+            box-shadow: 0px 0px 12px rgba(46, 125, 50, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* 💳 Payment Icons */
+        .d-flex .bi {
+            color: #2e7d32;
+            transition: 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .d-flex .bi:hover {
+            color: #388e3c;
+            transform: scale(1.3);
+            text-shadow: 0px 0px 8px rgba(46, 125, 50, 0.4);
+        }
+
+        /* 🍏 Recipe Card */
+        .recipe-card {
+            background: #f0fdf4;
+            border: 2px solid #81c784;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            padding: 15px;
+            position: relative;
+            animation: fadeInUp 1s ease-in-out;
+            font-family: 'poppins', sans-serif;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* 🖼 Recipe Image */
+        .recipe-img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .recipe-card:hover .recipe-img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* 📌 Recipe Content */
+        .recipe-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* 📜 Title */
+        .recipe-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        /* 📂 Category & Price */
+        .recipe-category,
+        .recipe-price {
+            font-size: 1rem;
+            color: #388e3c;
+            font-weight: 500;
+        }
+
+        /* ⭐ Rating */
+        .recipe-rating {
+            font-size: 1.3rem;
+            color: #ffcc00;
+        }
+
+        /* 🥗 Ingredients */
+        .recipe-ingredients {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+
+        /* 📖 Instructions */
+        .recipe-instructions {
+            font-size: 0.95rem;
+            color: #4e4e4e;
+            text-align: justify;
+        }
+
+        /* 🎀 Button */
+        .recipe-btn {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 12px;
+            transition: 0.3s;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .recipe-btn:hover {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            box-shadow: 0px 0px 12px rgba(46, 125, 50, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* 🔥 Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Change the color of the dropdown text */
+        #recipeFilter {
+            color: black;
+            /* Default text color */
+        }
+
+        /* Style for free recipes */
+        .free-option {
+            color: green;
+        }
+
+        /* Style for paid recipes */
+        .paid-option {
+            color: red;
+        }
+
+        .recipe-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .recipe-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-card img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .recipe-image-container img {
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #ff9800;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .recipe-image-container img:hover {
+            transform: scale(1.05);
+        }
+
+
+        .star-rating span {
+            font-size: 25px;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            color: lightgray;
+            /* Default color */
+        }
+
+        .star-rating span:hover,
+        .star-rating span.active {
+            color: gold;
+            transform: scale(1.2);
+        }
+
+        .price-badge {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .price-badge {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .recipe-details {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .recipe-details h6 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .free {
+            color: green;
+            background-color: #e6ffe6;
+        }
+
+        .paid {
+            color: red;
+            background-color: #ffe6e6;
+        }
+
+        .containerr {
+            max-width: 75%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .recipe-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: linear-gradient(135deg, #d4f8e8, #b2f2bb);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 128, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .recipe-container:hover {
+            transform: scale(1.03);
+        }
+
+        .dropdown {
+            margin-bottom: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .dropdown select {
+            background-color: #a3e6ac;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .dropdown select:hover {
+            background-color: #8bd693;
+            transform: scale(1.05);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 8px;
+            background-color: #e3fcef;
+            border-left: 5px solid #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #1e5631;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        /* Fade-in effect for the result box */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonials-section {
+            background: #e9f7ef;
+            /* Light green background */
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #388e3c;
+            /* Green shade */
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .testimonials-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        .reviewer-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .star-rating {
+            font-size: 22px;
+            color: #ffcc00;
+            margin-top: 10px;
+        }
+
+        /* Animation */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer {
+    background: linear-gradient(135deg, #154734, #28a745);
+    color: white;
+}
+
+.footer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #ffcc00;
+    display: block;
+    margin-top: 5px;
+}
+
+.footer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer ul li a i {
+    margin-right: 8px;
+}
+
+.footer ul li a:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.footer p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.footer .newsletter-form input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.footer .newsletter-form button {
+    background: #ffcc00;
+    color: #154734;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.footer .newsletter-form button:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ffcc00;
+    transform: scale(1.2);
+}
+
+.legal-links li a {
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.legal-links li a:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@500&display=swap');
+
+.stylish-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: #157347; /* Soft green */
+    text-transform: capitalize; /* Looks more natural */
+    letter-spacing: 1px;
+    border-bottom: 2px solid #a3d9a5; /* Light green underline */
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.stylish-text:hover {
+    color: #0d5c38; /* Darker green on hover */
+    border-bottom: 2px solid #81c784; /* Slightly darker green underline */
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;">
+                <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+            </a>
+
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i>
+                            About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i>
+                            Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact
+                            Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+                <!-- Search Bar -->
+                <!-- <form class="d-flex ms-auto me-4 flex-grow-1 flex-lg-grow-0"> 
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search Recipes" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+
+                <!-- Shopping Cart and Logout Buttons -->
+                <div class="d-flex align-items-center">
+                    <!-- <a href="#" class="btn btn-outline-primary position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a> -->
+                    <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 15px;">
+                        <i class="fas fa-heart"></i> (<span id="favCount">0</span>)
+                    </button>
+                      <script>
+                        document.getElementById('favBtn').addEventListener('click', () => {
+                      // You can navigate to a separate "favorites" page or filter favorites on the current page
+                      window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                    });
+                    </script>
+                    <button class="btn btn-outline-danger" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row about-section-unique">
+            <div class="col-md-6 about-content-unique" data-aos="fade-right">
+                <h2 class="about-title-unique">About Us</h2>
+                <p class="about-text-unique">
+                    Welcome to our Recipe Sharing App! We believe that cooking is an art,
+                    and sharing recipes connects people. Our platform is designed to bring food lovers together,
+                    making it easy to explore and share mouth-watering recipes from all around the world.
+                </p>
+            </div>
+            <div class="col-md-6 about-image-unique" data-aos="fade-left">
+                <img src="https://media.istockphoto.com/id/1354214251/photo/happy-team-of-chefs-high-fiving-in-the-kitchen-of-a-restaurant-and-smiling.jpg?s=612x612&w=0&k=20&c=SWPsMyVuHG9GsD2Ws7MmSBOg4ovV6YH_BnxlECSLnMU="
+                    alt="Team Photo" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container about-section">
+        <div class="row align-items-center fade-in" id="missionSection">
+            <div class="col-md-6">
+                <img src="https://img.freepik.com/premium-photo/group-chefs-holding-plate-prepared-pasta-kitchen_107420-18580.jpg"
+                    alt="Our Mission" class="about-img">
+            </div>
+            <div class="col-md-6">
+                <h2 class="about-heading">Our Mission: Bringing Joy Through Food</h2>
+                <p class="about-text">We believe food is not just about sustenance, but about sharing love, culture, and
+                    creativity. Our mission is to empower home cooks and chefs to share their best recipes and inspire a
+                    community of food lovers.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container about-section">
+        <div class="row align-items-center flex-md-row-reverse fade-in" id="storySection">
+            <div class="col-md-6">
+                <img src="https://img.freepik.com/premium-photo/group-chefs-are-preparing-food-kitchen_248459-9817.jpg"
+                    alt="Our Story" class="about-img">
+            </div>
+            <div class="col-md-6">
+                <h2 class="about-heading">Our Story</h2>
+                <p class="about-text">Started by a group of passionate food lovers, our platform connects people through
+                    the power of recipes. From home kitchens to professional chefs, we provide a space to share, learn,
+                    and celebrate the art of cooking.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="food-stats-container">
+        <h2>Our Food Community</h2>
+
+        <div class="stats-grid">
+            <!-- Recipes -->
+            <div class="stat-card">
+                <i class="fas fa-utensils stat-icon"></i>
+                <h3><span class="counter" data-target="10000">0</span>+ Recipes</h3>
+                <p>Delicious and easy-to-follow recipes.</p>
+            </div>
+
+            <!-- Chefs -->
+            <div class="stat-card">
+                <i class="fas fa-user-chef stat-icon"></i>
+                <h3><span class="counter" data-target="5000">0</span>+ Chefs</h3>
+                <p>Expert chefs sharing their secrets.</p>
+            </div>
+
+            <!-- Food Lovers -->
+            <div class="stat-card">
+                <i class="fas fa-users stat-icon"></i>
+                <h3><span class="counter" data-target="200000">0</span>+ Food Lovers</h3>
+                <p>Passionate food enthusiasts worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Awards Section -->
+        <div class="awards-section text-center py-5">
+            <h2 class="fw-bold text-success"><i class="bi bi-award-fill"></i> Recognitions & Awards</h2>
+            <p class="text-muted">Celebrating our culinary excellence and achievements in the food industry.</p>
+
+            <div class="awards-container d-flex justify-content-center gap-4 mt-4">
+                <div class="award-item text-center">
+                    <i class="fas fa-medal award-icon text-warning"></i>
+                    <p>Best Recipe Collection</p>
+                </div>
+                <div class="award-item text-center">
+                    <i class="fas fa-star award-icon text-primary"></i>
+                    <p>Top Chef Ratings</p>
+                </div>
+                <div class="award-item text-center">
+                    <i class="fas fa-trophy award-icon text-danger"></i>
+                    <p>Food Innovation Award</p>
+                </div>
+                <div class="award-item text-center">
+                    <i class="fas fa-heart award-icon text-pink"></i>
+                    <p>Most Loved Recipes</p>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <div class="containerr mt-5">
+        <h2 class="text-center fw-bold">🍽️ Explore Delicious Recipes 🍽️</h2>
+        <p class="text-muted">Filter by category or recipe type to find your favorite dish.</p>
+
+        <!-- Filter Section -->
+        <div class="mb-3 filter-group">
+            <select id="categoryFilter" class="form-select shadow-sm">
+                <option value="all">🍳 All Categories</option>
+                <option value="breakfast">🥞 Breakfast</option>
+                <option value="lunch">🍱 Lunch</option>
+                <option value="dinner">🍽️ Dinner</option>
+                <option value="dessert">🍰 Dessert</option>
+            </select>
+            <select id="recipeFilter" class="form-select shadow-sm">
+                <option value="all">📜 All Recipes</option>
+                <option value="free" class="free-option">✅ Free Recipes</option>
+                <option value="paid" class="paid-option">💲 Paid Recipes</option>
+            </select>
+        </div>
+
+        <!-- Recipe List (Will Load Recipes Here) -->
+        <div class="row" id="recipeList"></div>
+    </div>
+
+
+    <!-- Recipe Modal -->
+    <div class="modal fade" id="recipeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content recipe-modal">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa-solid fa-utensils text-warning"></i>
+                        <span id="recipeTitle"></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <!-- Recipe Image -->
+                    <div class="recipe-image-container">
+                        <img id="recipeImage" class="img-fluid rounded shadow-lg" alt="Recipe Image">
+                    </div>
+
+                    <!-- Recipe Details -->
+                    <div class="recipe-details">
+                        <h6 class="text-primary">
+                            <i class="fa-solid fa-list-ul"></i> Ingredients
+                        </h6>
+                        <p id="recipeIngredients" class="text-muted"></p>
+
+                        <h6 class="text-success mt-3">
+                            <i class="fa-solid fa-book-open"></i> Instructions
+                        </h6>
+                        <p id="recipeInstructions" class="text-muted"></p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="paidRecipeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content premium-modal">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-gem text-warning"></i> Unlock Premium Recipe
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body text-center">
+                    <p class="premium-text">
+                        This recipe is part of our <strong>exclusive premium collection</strong>.
+                        Get full access to step-by-step instructions from top chefs, special ingredients, and pro tips!
+                    </p>
+
+                    <!-- Payment Methods -->
+                    <div class="payment-options">
+                        <p class="fw-bold">Choose a payment method:</p>
+                        <div class="d-flex justify-content-center gap-4">
+                            <div class="payment-icon" data-method="card">
+                                <i class="bi bi-credit-card"></i> <span>Card</span>
+                            </div>
+                            <div class="payment-icon" data-method="paypal">
+                                <i class="bi bi-paypal"></i> <span>PayPal</span>
+                            </div>
+                            <div class="payment-icon" data-method="gpay">
+                                <i class="bi bi-google"></i> <span>Google Pay</span>
+                            </div>
+                            <div class="payment-icon" data-method="apple">
+                                <i class="bi bi-apple"></i> <span>Apple Pay</span>
+                            </div>
+                            <div class="payment-icon" data-method="wallet">
+                                <i class="bi bi-wallet2"></i> <span>Wallet</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proceed Button -->
+                    <button class="btn btn-success mt-4 pay-btn" onclick="openPaymentModal()">
+                        <i class="bi bi-lock-fill"></i> Proceed to Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dummy Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content payment-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Processing Payment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-credit-card-fill text-success fs-1"></i>
+                    <p class="mt-3">Redirecting to payment gateway...</p>
+                    <div class="spinner-border text-success"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="recipe-container">
+        <h3>🍽️ Build Your Own Recipe</h3>
+        <p>Select ingredients to create a fun dish!</p>
+
+        <select id="base" class="form-select dropdown">
+            <option value="">Choose a Base...</option>
+            <option value="Bread">🍞 Bread</option>
+            <option value="Rice">🍚 Rice</option>
+            <option value="Pasta">🍝 Pasta</option>
+        </select>
+
+        <select id="main" class="form-select dropdown">
+            <option value="">Pick a Main Ingredient...</option>
+            <option value="Chicken">🍗 Chicken</option>
+            <option value="Beef">🥩 Beef</option>
+            <option value="Mushrooms">🍄 Mushrooms</option>
+        </select>
+
+        <select id="seasoning" class="form-select dropdown">
+            <option value="">Select a Seasoning...</option>
+            <option value="Garlic">🧄 Garlic</option>
+            <option value="Spicy">🌶️ Spicy</option>
+            <option value="Sweet">🍯 Sweet</option>
+        </select>
+
+        <button class="btn btn-success mt-3" onclick="generateRecipe()">Create Recipe</button>
+
+        <div id="result" class="result-box mt-3">
+            <h5>🍽️ Your Custom Recipe:</h5>
+            <p id="recipeText"></p>
+        </div>
+    </div>
+
+    <section class="testimonials-section">
+        <h2 class="section-title">⭐ What Our Users Say ⭐</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <img src="https://media.nngroup.com/media/people/photos/portrait-sara-r-2023.jpg.256x256_q75_autocrop_crop-smart_upscale.jpg"
+                    alt="User 1" class="reviewer-img">
+                <h4>Sarah Thompson</h4>
+                <p>"This website has transformed my cooking! The recipes are easy and delicious!"</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="https://media.nngroup.com/media/people/photos/20211213_Vegas-tanner.jpg.256x256_q75_autocrop_crop-smart_upscale.jpg"
+                    alt="User 2" class="reviewer-img">
+                <h4>Michael Lee</h4>
+                <p>"I love the variety of recipes and the premium ones are totally worth it!"</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="https://media.nngroup.com/media/people/photos/Rachel-2021.jpg.256x256_q75_autocrop_crop-smart_upscale.jpg"
+                    alt="User 3" class="reviewer-img">
+                <h4>Emily Johnson</h4>
+                <p>"The user-friendly design and step-by-step guides make cooking fun!"</p>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">🌍 Explore</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                        <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                        <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Popular Recipes -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">🔥 Trending Dishes</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                        <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Information -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">📍 Find Us</h5>
+                    <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                    <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                    <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+                </div>
+    
+                <!-- Newsletter & Social Media -->
+                <div class="col-md-3">
+                    <h5 class="footer-title">📩 Stay Updated</h5>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email here" required>
+                        <button type="submit" style="margin-right: 130px;"><i class="buton fas fa-paper-plane"></i> Subscribe</button>
+                    </form>
+                    <div class="social-icons mt-4">
+                        <h5>🤩 Follow Our Journey</h5>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Legal Links -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <ul class="list-inline legal-links">
+                        <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Footer Bottom -->
+            <div class="footer-bottom text-center mt-4">
+                <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+            </div>
+        </div>
+    </footer>
+    
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Simulate recipe load delay
+            setTimeout(() => {
+                document.getElementById("recipeList").classList.add("show");
+            }, 500);
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".fade-in");
+            function reveal() {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 50) {
+                        section.classList.add("show");
+                    }
+                });
+            }
+            window.addEventListener("scroll", reveal);
+            reveal();
+        });
+
+        // Counter Animation
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+                let updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const speed = 50;
+                    const increment = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        });
+
+
+        const recipes = [
+            {
+                id: 1,
+                name: "Avocado Toast",
+                category: "breakfast",
+                price: "free",
+                rating: 5,
+                image: "https://media.tenor.com/WTUXcm-HR7sAAAAM/avocado-toast.gif",
+                ingredients: "Avocado, Bread, Salt, Pepper",
+                instructions: "Toast the bread until it turns golden brown. Mash the avocado in a bowl, adding a pinch of salt and black pepper for taste. Spread the mashed avocado evenly on the toasted bread. Optionally, drizzle some olive oil or add chili flakes for extra flavor. Serve immediately."
+            },
+            {
+                id: 2,
+                name: "Grilled Chicken",
+                category: "lunch",
+                price: "paid",
+                rating: 4,
+                image: "https://media.tenor.com/OeaFObFO-XAAAAAM/barbeku-mangal.gif",
+                ingredients: "Chicken breast, Olive oil, Garlic, Lemon, Herbs",
+                instructions: "Marinate the chicken with olive oil, minced garlic, lemon juice, and your favorite herbs. Let it rest for at least 30 minutes. Preheat the grill to medium-high heat. Place the chicken on the grill and cook for about 6-7 minutes on each side until fully cooked. Serve with a side of roasted vegetables or salad."
+            },
+            {
+                id: 3,
+                name: "Pasta Alfredo",
+                category: "dinner",
+                price: "free",
+                rating: 5,
+                image: "https://media.tenor.com/97B9L6YEZasAAAAM/fettuccine-alfredo-the-creamiest-fettuccine-alfredo.gif",
+                ingredients: "Pasta, Cream, Parmesan, Garlic",
+                instructions: "Boil the pasta in salted water until al dente, then drain. In a separate pan, melt butter and sauté minced garlic until fragrant. Pour in heavy cream and bring to a gentle simmer. Add grated parmesan cheese and stir continuously until a smooth, creamy sauce forms. Toss the pasta in the sauce and mix well. Garnish with chopped parsley and extra cheese. Serve hot."
+            },
+            {
+                id: 4,
+                name: "Chocolate Cake",
+                category: "dessert",
+                price: "paid",
+                rating: 5,
+                image: "https://hips.hearstapps.com/del.h-cdn.co/assets/16/50/640x320/landscape-1481652421-gif.gif?resize=640:*",
+                ingredients: "Flour, Cocoa Powder, Sugar, Eggs, Butter, Baking Powder, Milk, Vanilla Extract",
+                instructions: "Preheat your oven to 350°F (175°C). Grease a cake pan and line it with parchment paper. In a mixing bowl, whisk together flour, cocoa powder, baking powder, and sugar. In a separate bowl, beat eggs, melted butter, milk, and vanilla extract until smooth. Gradually combine the wet and dry ingredients, mixing until you get a smooth batter. Pour the batter into the prepared cake pan and bake for 30-35 minutes or until a toothpick inserted in the center comes out clean. Let the cake cool before frosting with chocolate ganache or dusting with powdered sugar. Serve with ice cream or fresh berries."
+            },
+            {
+                id: 5,
+                name: "Pancakes",
+                category: "breakfast",
+                price: "free",
+                rating: 4,
+                image: "https://64.media.tumblr.com/9be111a703abf36707658a68692db3fb/tumblr_ns7w7uplUd1u7gnm9o1_500.gif",
+                ingredients: "Flour, Eggs, Milk, Sugar",
+                instructions: "In a mixing bowl, whisk together flour, eggs, milk, sugar, and a pinch of salt until a smooth batter forms. Heat a non-stick pan over medium heat and lightly grease it with butter. Pour a ladle of batter into the pan and spread it evenly. Cook until bubbles form on the surface, then flip and cook the other side until golden brown. Serve warm with syrup, fruits, or whipped cream."
+            },
+            {
+                id: 6,
+                name: "Caesar Salad",
+                category: "lunch",
+                price: "paid",
+                rating: 5,
+                image: "https://media.tenor.com/fLq1aWenY74AAAAM/salad-roasted-salad.gif",
+                ingredients: "Romaine Lettuce, Croutons, Parmesan, Caesar Dressing",
+                instructions: "Chop romaine lettuce into bite-sized pieces and place them in a large bowl. Add crunchy croutons and freshly grated parmesan cheese. Drizzle Caesar dressing over the salad and toss everything together until evenly coated. Serve immediately with grilled chicken or shrimp for extra protein."
+            },
+            {
+                id: 7,
+                name: "Fruit Smoothie",
+                category: "breakfast",
+                price: "free",
+                rating: 5,
+                image: "https://s.yimg.com/uu/api/res/1.2/kaYuWjuH3DJ9EPzIL3O80Q--~B/aD0yODI7dz01MDA7YXBwaWQ9eXRhY2h5b24-/http://66.media.tumblr.com/c8cfd5bb95b56e56472340cca5d074c3/tumblr_o27v349azS1u9ooogo1_500.gif",
+                ingredients: "Banana, Strawberries, Yogurt, Honey",
+                instructions: "Peel and slice the banana, and clean the strawberries. Add them to a blender along with yogurt and a drizzle of honey. Blend on high speed until the mixture is smooth and creamy. If the smoothie is too thick, add a splash of milk or juice. Pour into a glass and serve chilled."
+            },
+            {
+                id: 8,
+                name: "Steak Dinner",
+                category: "dinner",
+                price: "paid",
+                rating: 4,
+                image: "https://i.gifer.com/9ve.gif",
+                ingredients: "Steak, Salt, Pepper, Butter, Garlic, Herbs",
+                instructions: "Season the steak generously with salt and black pepper. Heat a pan over high heat and add butter. Sear the steak for 3-4 minutes on each side until a golden-brown crust forms. Lower the heat, add minced garlic and fresh herbs, and baste the steak with melted butter. Let it rest for 5 minutes before slicing. Serve with mashed potatoes or grilled vegetables."
+            },
+            {
+                id: 9,
+                name: "Mango Milkshake",
+                category: "beverage",
+                price: "free",
+                rating: 5,
+                image: "https://i.pinimg.com/originals/8c/28/40/8c284003e2b75887593af8b70915fd2e.gif",
+                ingredients: "Mango, Milk, Sugar, Ice Cubes",
+                instructions: "Peel and chop ripe mangoes into small pieces. Add them to a blender along with chilled milk, sugar, and a few ice cubes. Blend on high speed until smooth and frothy. Taste and adjust the sweetness if needed. Pour into a tall glass and garnish with mango slices or a scoop of vanilla ice cream. Serve chilled and enjoy!"
+            }
+        ];
+
+
+        function displayRecipes(category, filter) {
+            const recipeList = document.getElementById("recipeList");
+            recipeList.innerHTML = "";
+
+            recipes.forEach(recipe => {
+                if ((category === "all" || recipe.category === category) && (filter === "all" || recipe.price === filter)) {
+                    const recipeCard = document.createElement("div");
+                    recipeCard.classList.add("col-md-4", "mb-4");
+                    recipeCard.innerHTML = `
+                       <div class="card recipe-card" onclick="handleRecipeClick(${recipe.id}, '${recipe.price}')">
+    <img src="${recipe.image}" class="card-img-top" alt="${recipe.name}">
+    <div class="card-body text-center">
+        <h5 class="card-title">${recipe.name}</h5>
+
+        <!-- Dynamic Star Rating -->
+        <div class="star-rating" data-recipe-id="1">
+            <span onclick="rateRecipe(1, 1)" onmouseover="highlightStars(1,1)" onmouseout="resetStars(1)">⭐</span>
+            <span onclick="rateRecipe(1, 2)" onmouseover="highlightStars(1,2)" onmouseout="resetStars(1)">⭐</span>
+            <span onclick="rateRecipe(1, 3)" onmouseover="highlightStars(1,3)" onmouseout="resetStars(1)">⭐</span>
+            <span onclick="rateRecipe(1, 4)" onmouseover="highlightStars(1,4)" onmouseout="resetStars(1)">⭐</span>
+            <span onclick="rateRecipe(1, 5)" onmouseover="highlightStars(1,5)" onmouseout="resetStars(1)">⭐</span>
+        </div>
+
+        <!-- Color-coded price tag -->
+        <p class="price-badge ${recipe.price.toLowerCase() === 'free' ? 'free' : 'paid'}">
+            ${recipe.price.toUpperCase()}
+        </p>
+    </div>
+</div>
+                    `;
+                    recipeList.appendChild(recipeCard);
+                }
+            });
+        }
+
+        function handleRecipeClick(id, price) {
+            const recipe = recipes.find(r => r.id === id);
+            if (price === "paid") {
+                new bootstrap.Modal(document.getElementById("paidRecipeModal")).show();
+            } else {
+                document.getElementById("recipeTitle").textContent = recipe.name;
+                document.getElementById("recipeImage").src = recipe.image;
+                document.getElementById("recipeIngredients").textContent = recipe.ingredients;
+                document.getElementById("recipeInstructions").textContent = recipe.instructions;
+                new bootstrap.Modal(document.getElementById("recipeModal")).show();
+            }
+        }
+
+        document.getElementById("categoryFilter").addEventListener("change", () => {
+            displayRecipes(categoryFilter.value, recipeFilter.value);
+        });
+
+        document.getElementById("recipeFilter").addEventListener("change", () => {
+            displayRecipes(categoryFilter.value, recipeFilter.value);
+        });
+
+        displayRecipes("all", "all");
+
+        document.getElementById("recipeFilter").addEventListener("change", function () {
+            let selectedOption = this.value;
+
+            // Change color based on selection
+            if (selectedOption === "free") {
+                this.style.color = "green";
+            } else if (selectedOption === "paid") {
+                this.style.color = "red";
+            } else {
+                this.style.color = "black"; // Default color
+            }
+        });
+
+        let selectedPaidRecipe = null; // Store the selected paid recipe
+
+        function handleRecipeClick(id, price) {
+            const recipe = recipes.find(r => r.id === id);
+            if (price.toLowerCase() === "paid") {
+                selectedPaidRecipe = recipe; // Store the selected paid recipe
+                new bootstrap.Modal(document.getElementById("paidRecipeModal")).show();
+            } else {
+                displayRecipeDetails(recipe);
+            }
+        }
+
+        function openPaymentModal() {
+            // Close the premium modal
+            var premiumModal = bootstrap.Modal.getInstance(document.getElementById('paidRecipeModal'));
+            premiumModal.hide();
+
+            // Show the payment modal
+            setTimeout(() => {
+                var paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+                paymentModal.show();
+
+                // Simulate payment processing
+                setTimeout(() => {
+                    paymentModal.hide();
+                    alert('Payment Successful! Recipe Unlocked.');
+
+                    // Open the recipe modal for the paid recipe
+                    if (selectedPaidRecipe) {
+                        displayRecipeDetails(selectedPaidRecipe);
+                    }
+                }, 3000);
+            }, 500);
+        }
+
+        function displayRecipeDetails(recipe) {
+            document.getElementById("recipeTitle").textContent = recipe.name;
+            document.getElementById("recipeImage").src = recipe.image;
+            document.getElementById("recipeIngredients").textContent = recipe.ingredients;
+            document.getElementById("recipeInstructions").textContent = recipe.instructions;
+
+            new bootstrap.Modal(document.getElementById("recipeModal")).show();
+        }
+
+        function generateRecipe() {
+            const base = document.getElementById("base").value;
+            const main = document.getElementById("main").value;
+            const seasoning = document.getElementById("seasoning").value;
+            const resultBox = document.getElementById("result");
+            const recipeText = document.getElementById("recipeText");
+
+            if (!base || !main || !seasoning) {
+                alert("Please select all ingredients to generate a recipe!");
+                return;
+            }
+
+            const recipe = `You've created a ${seasoning} ${main} with ${base}! 🎉`;
+            recipeText.textContent = recipe;
+            resultBox.style.display = "block";
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let testimonials = document.querySelectorAll(".testimonial-card");
+            let index = 0;
+
+            function autoSlide() {
+                testimonials.forEach((testimonial, i) => {
+                    testimonial.style.display = i === index ? "block" : "none";
+                });
+
+                index = (index + 1) % testimonials.length;
+            }
+
+            setInterval(autoSlide, 4000); // Change review every 4 seconds
+            autoSlide(); // Initial call
+        });
+
+
+
+
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+ 
+ <script type="module" src="homepage.js"></script>
+ <script type="module" src="favorites.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

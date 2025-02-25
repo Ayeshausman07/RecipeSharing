@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="stylehome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="module" src="./homepage.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+        <div class="container">
+            <!-- Logo and App Name -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/logo.png" alt="FlavorFusion Logo" class="me-2" style="height: 40px;"> <!-- Adjust height as needed -->
+                <span class="app-name fs-4 fw-bold stylish-text">Nature<span class="text-success">Bites</span></span>
+                <!-- App name with styling -->
+            </a>
+    
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Centered Navigation Links -->
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-recipe.html"><i class="fas fa-plus-circle"></i> Add Recipes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="chef.html"><i class="fas fa-user-chef"></i> Chefs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+    
+                <!-- Search Bar -->
+                <!-- <form class="d-flex ms-auto me-4 flex-grow-1 flex-lg-grow-0"> 
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search Recipes" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form> -->
+    
+                <!-- Shopping Cart and Logout Buttons -->
+                <div class="d-flex align-items-center">
+                    <!-- <a href="#" class="btn btn-outline-primary position-relative me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a> -->
+                    <button class="fav btn btn-outline-success" id="favBtn" style="margin-right: 3px;">
+                        <i class="fas fa-heart"></i> (<span id="favCount">0</span>)
+                    </button>
+                      <script>
+                        document.getElementById('favBtn').addEventListener('click', () => {
+                      // You can navigate to a separate "favorites" page or filter favorites on the current page
+                      window.location.href = 'favorites.html'; // Example: navigate to the favorites page
+                    });
+                    </script>
+                    
+                    <button class="btn btn-outline-danger ml-2" id="logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid hero-section d-flex align-items-center justify-content-between px-5 position-relative" 
+    style="background: linear-gradient(135deg, #d4fc79, #96e6a1); color: #2c3e50; padding: 80px 0; overflow: hidden;">
+    
+    <!-- Glitter Effect -->
+    <div class="glitter"></div>
+
+    <!-- Left Text Section -->
+    <div class="hero-text">
+        <div>
+            <h1 class="fw-bold display-4">
+                Welcome <span id="loggedUserFName"></span>, to the <br>  
+                <span style="color: #2ecc71;">Recipe Sharing Store! 🍲</span>
+            </h1>
+            <p class="lead" style="max-width: 600px;">
+                Unleash your inner chef! Find delicious recipes, share your favorite dishes, 
+                and connect with a community of passionate food lovers. 
+            </p>
+        </div>
+        <div class="mt-4">
+            <h2 class="fw-bold" style="color: #27ae60;">Fresh. Simple. Delicious. 🍃</h2>
+            <p style="max-width: 550px;">
+                No more endless scrolling through messy blogs! Access **easy-to-follow recipe cards**, 
+                **step-by-step guides**, and **chef secrets** to master your cooking in no time.
+            </p>
+        </div>
+        <a href="#" class="btn btn-lg mt-4 explore-btn">🍽️ Explore Recipes</a>
+    </div>
+
+    <!-- Right Image Section -->
+    <div class="hero-image">
+            <div class="hero-image">
+                <img id="heroImage" src="assets/mainimg.png1.png" alt="Delicious Food" class="img-fluid"
+                style="max-width: 600px; height: 600px;">
+            </div>
+             
+    </div>
+</div>
+
+
+<!-- Motivational Thought -->
+<div class="recipe-thought text-center mt-5 ">
+    <h2>"Cooking is an art, and every recipe is a masterpiece waiting to be shared!"</h2>
+</div>
+
+<!-- Decorative Divider -->
+<div class="section-divider">
+    <hr class="line">
+    <i class="fas fa-utensils icon"></i> 
+    <hr class="line">
+</div>
+
+
+     <!-- About Section -->
+
+ <div class="container mt-0 pt-0">
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Text Section -->
+                <div class="sharing col-lg-6">
+                    <span class="text-uppercase text-danger fw-bold">About Us</span>
+                    <div class="line"></div>
+                    <h2>Sharing Delicious Recipes for Everyone</h2>
+                    <p>
+                        Welcome to our Recipe Sharing Platform, where food lovers unite! 
+                        Explore mouthwatering recipes from around the world, 
+                        contributed by passionate home cooks and professional chefs. 
+                        Join our community and start sharing your own delicious creations!
+                    </p>
+                    <p>
+                        Discover step-by-step guides, cooking tips, and expert techniques 
+                        to elevate your culinary skills. Let’s cook, share, and enjoy!
+                    </p>
+                </div>
+    
+                <!-- Right Image Section -->
+                <div class="col-lg-6 position-relative">
+                    <div class="about-img">
+                        <img src="https://media.gettyimages.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=gi&k=20&c=YiNatAP0CzFSalhnkzSUFyy6XpVhBe3WSnRpu1W3pV4=" alt="Restaurant Image">
+                        <div class="play-btn">
+                            <i class="fa fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Recipe Images -->
+            <div class="container mt-5 text-center">
+                <div class="row">
+                    <div class="col-md-4 fade-in" style="animation-delay: 0.2s;">
+                        <div class="step-box">
+                            <h4 class="step-title">Step 01</h4>
+                            <img src="https://cdn.shopify.com/s/files/1/0425/2699/8690/files/Veggie_Chopping_Gifs_2_480x480.gif?v=1653493053" 
+                                 alt="Step 1" class="step-img">
+                            <p class="step-text">Chop the vegetables and prepare ingredients.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in" style="animation-delay: 0.4s;">
+                        <div class="step-box">
+                            <h4 class="step-title">Step 02</h4>
+                            <img src="https://i.gifer.com/embedded/download/G6IK.gif" 
+                                 alt="Step 2" class="step-img">
+                            <p class="step-text">Cook ingredients in a heated pan until golden.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in" style="animation-delay: 0.6s;">
+                        <div class="step-box">
+                            <h4 class="step-title">Step 03</h4>
+                            <img src="https://media3.giphy.com/media/xT3i0TXPRLa4WQrqik/giphy.gif?cid=6c09b952khugo4aee4qnv1ay237leivf51lvs4wbe9c7al1v&ep=v1_gifs_search&rid=giphy.gif&ct=g" 
+                                 alt="Step 3" class="step-img">
+                            <p class="step-text">Serve the dish hot & enjoy your meal!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ </div>
+
+
+
+ <!--recipes api section-->
+
+ <section class="bodyy">
+    <section class="container my-5" id="categories">
+        <h2 class="text-center mb-4">Explore Recipe Categories</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="category-cards">
+            <!-- Dynamically generated category cards will appear here -->
+        </div>
+    </section>
+</section>
+
+
+    <!-- cooking event/class section-->
+    <!-- <section class="cont">
+        <div class="container">
+            <h2 class="cont-heading text-center">Upcoming Live Cooking Sessions</h2>
+            <div class="row mt-4" id="live-session-container"></div>
+        </div>
+    </section>
+     -->
+
+<!-- Live Session Registration Modal -->
+<!-- Live Session Modal -->
+<!-- Live Cooking Sessions Section -->
+<section id="liveCookingSessions" class="cooking-session-container">
+    <div class="container">
+        <h2 class="session-title mb-5">Upcoming Live Cooking Sessions</h2>
+        <div id="sessionList" class="row"></div>
+    </div>
+</section>
+
+<!-- Live Cooking Session Modal -->
+<!-- Live Cooking Session Modal -->
+<div class="modal fade" id="sessionModalUnique" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">🔥 Join Live Cooking Session</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="sessionFormUnique">
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">👤 Full Name</label>
+                        <input type="text" class="form-control" id="userName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">📧 Email</label>
+                        <input type="email" class="form-control" id="userEmail" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100" id="submitBtn">✅ Join Now</button>
+                    <p id="formSuccessMessage" class="text-success text-center mt-2 d-none">🎉 Successfully Registered!</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="promo-section-xyz12">
+    <div class="promo-main-box-r23">
+        <div class="promo-card-large-r23">
+            <img src="https://media.istockphoto.com/id/1251268250/photo/green-leaves-with-dew-drops.jpg?s=612x612&w=0&k=20&c=KsoQpPhIgyC7jiLzrLdDHqV9IZIIvnlpz5CkD-PQ1PQ=" alt="Delicious Food" class="promo-img-r23">
+            <div class="promo-text-r23">
+                <h2 class="promo-heading-r23">Trending Recipes</h2>
+                <p class="promo-desc-r23">Discover the latest and most popular recipes.</p>
+                <a href="#" class="promo-btn-r23">Explore Now</a>
+            </div>
+        </div>
+        <div class="promo-side-box-r23">
+            <div class="promo-card-small-r23">
+                <img src="https://t3.ftcdn.net/jpg/10/76/41/50/360_F_1076415082_3C3m3w1BLD10JvHpqKgz1lXe2slLfLXa.jpg" alt="Exclusive Dishes" class="promo-img-small-r23">
+                <div class="promo-text-small-r23">
+                    <h3>Exclusive Dishes</h3>
+                    <p>Try handpicked premium recipes from top chefs.</p>
+                    <a href="#" class="promo-btn-small-r23">Discover</a>
+                </div>
+            </div>
+            <div class="promo-card-small-r23">
+                <img src="https://t3.ftcdn.net/jpg/09/26/62/90/360_F_926629001_9GLGWMwxVRVPWVa7pgYs9q7Lo4jDZpNm.jpg" alt="Healthy Choices" class="promo-img-small-r23">
+                <div class="promo-text-small-r23">
+                    <h3>Healthy Choices</h3>
+                    <p>Find nutritious recipes for a healthy lifestyle.</p>
+                    <a href="#" class="promo-btn-small-r23">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="highlight-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Side: Text & Stats -->
+            <div class="col-lg-6 text-section">
+                <h2 class="highlight-title">A little information for our valuable guests</h2>
+                <p class="highlight-description">
+                    At our place, we believe dining is not just about food but about the entire experience. 
+                    Our staff, renowned for their warmth and dedication, strives to make every visit an unforgettable event.
+                </p>
+
+                <!-- Statistics Grid -->
+                <div class="stats-container">
+                    <div class="stat-box" data-aos="fade-up">
+                        <h3>3</h3>
+                        <p>Locations</p>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+                        <h3>1995</h3>
+                        <p>Founded</p>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+                        <h3>65+</h3>
+                        <p>Staff Members</p>
+                    </div>
+                    <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
+                        <h3>100%</h3>
+                        <p>Satisfied Customers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Image -->
+            <div class="col-lg-6 text-center image-box">
+                <img src="https://www.icegif.com/wp-content/uploads/2024/01/icegif-294.gif" alt="Chef Cooking" class="highlight-image" data-aos="zoom-in">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AOS Animation Library -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000 });
+</script>
+
+<footer class="footer bg-dark text-light py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🌍 Explore</h5>
+                <ul class="list-unstyled">
+                    <li><a href="homepage.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="add-recipe.html"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-users"></i> Our Story</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Recipes -->
+            <div class="col-md-3">
+                <h5 class="footer-title">🔥 Trending Dishes</h5>
+                <ul class="list-unstyled">
+                    <li><a href="favorites.html"><i class="fas fa-pizza-slice"></i> Cheesy Margherita Pizza</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-drumstick-bite"></i> Spicy Butter Chicken</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-carrot"></i> Healthy Avocado Salad</a></li>
+                    <li><a href="favorites.html"><i class="fas fa-ice-cream"></i> Choco Lava Cake</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📍 Find Us</h5>
+                <p><i class="fas fa-map-marker-alt"></i> 456 Flavor Street, Yumtown, YT 78901</p>
+                <p><i class="fas fa-phone"></i> +1 (987) 654-3210</p>
+                <p><i class="fas fa-envelope"></i> support@flavorfusion.com</p>
+            </div>
+
+            <!-- Newsletter & Social Media -->
+            <div class="col-md-3">
+                <h5 class="footer-title">📩 Stay Updated</h5>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email here" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <div class="social-icons mt-4">
+                    <h5>🤩 Follow Our Journey</h5>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline legal-links">
+                    <li class="list-inline-item"><a href="#">🔒 Privacy Policy</a></li>
+                    <li class="list-inline-item"><a href="#">📜 Terms of Service</a></li>
+                    <li class="list-inline-item"><a href="#">🍪 Cookie Preferences</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom text-center mt-4">
+            <p class="mb-0">&copy; 2025 FlavorFusion. Bringing Recipes to Life! 🍽️</p>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        const apiUrls = {
+    italian: 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Italian',
+    dessert: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert',
+    starter: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Starter',
+    // margarita: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita', // Fixed by ensuring lowercase
+    burger: 'https://www.themealdb.com/api/json/v1/1/search.php?s=burger',
+    // fastfood: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef', // No "Fast Food" category, using Beef
+    mexican: 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Mexican',
+    vegan: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian', // Fixed (No "Vegan", using Vegetarian)
+    seafood: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood',
+    breakfast: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast',  
+
+    // ✅ **New Working Categories**
+    chicken: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Chicken',
+    beef: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef',
+    lamb: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Lamb',
+    pasta: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta',
+    salad: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Vegetarian',
+    soup: 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Soup'
+};
+
+async function fetchCategories() {
+    try {
+        const [
+            italian, dessert, starter, burger, mexican, vegan, seafood, breakfast, salad, soup
+        ] = await Promise.all([
+            fetch(apiUrls.italian).then(res => res.json()),
+            fetch(apiUrls.dessert).then(res => res.json()),
+            fetch(apiUrls.starter).then(res => res.json()),
+            fetch(apiUrls.burger).then(res => res.json()),
+            fetch(apiUrls.mexican).then(res => res.json()),
+            fetch(apiUrls.vegan).then(res => res.json()),
+            fetch(apiUrls.seafood).then(res => res.json()),
+            fetch(apiUrls.breakfast).then(res => res.json()),
+            fetch(apiUrls.salad).then(res => res.json()),
+            fetch(apiUrls.soup).then(res => res.json())
+        ]);
+
+        const categories = [
+            { name: 'Italian', items: italian.meals, url: 'category.html?category=Italian' },
+            { name: 'Dessert', items: dessert.meals, url: 'category.html?category=Dessert' },
+            { name: 'Starters', items: starter.meals, url: 'category.html?category=Starter' },
+            { name: 'Burgers', items: burger.meals, url: 'category.html?category=Burger' },
+            { name: 'Mexican', items: mexican.meals, url: 'category.html?category=Mexican' },
+            { name: 'Vegan', items: vegan.meals, url: 'category.html?category=Vegan' },
+            { name: 'Seafood', items: seafood.meals, url: 'category.html?category=Seafood' },
+            { name: 'Breakfast', items: breakfast.meals, url: 'category.html?category=Breakfast' },
+            { name: 'Salad', items: salad.meals, url: 'category.html?category=Salad' },
+            { name: 'Soup', items: soup.meals, url: 'category.html?category=Soup' }
+        ];
+
+        const categoryCards = document.getElementById('category-cards');
+        categories.forEach(category => {
+            if (!category.items || category.items.length === 0) return;
+            const card = document.createElement('div');
+            card.classList.add('col');
+            card.innerHTML = `
+                <div class="card shadow-lg rounded-3">
+                    <img src="${category.items[0]?.strMealThumb || category.items[0]?.strDrinkThumb}" alt="${category.name}" class="card-img-top rounded-3">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title">${category.name}</h5>
+                        <a href="${category.url}" class="btn btn-primary mt-auto">View Recipes</a>
+                    </div>
+                </div>
+            `;
+            categoryCards.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', fetchCategories);
+
+        // main image changer js
+        
+   
+        const images = ["assets/mainimg.png1.png", "assets/outmain2.png", "assets/main3.png" ,"assets/main44.png"];
+        let currentImageIndex = 0;
+        const heroImage = document.getElementById('heroImage');
+
+
+        function changeImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            heroImage.src = images[currentImageIndex];
+        }
+
+        setInterval(changeImage, 2000);
+
+
+        
+        // <!-- recipes class js --->
+
+        
+
+$(document).ready(function () {
+        let currentStep = 1;
+        let totalSteps = $(".step-container").length;
+
+        $("#nextBtn").click(function () {
+            if (currentStep < totalSteps) {
+                $("#step" + currentStep).removeClass("active");
+                currentStep++;
+                $("#step" + currentStep).addClass("active");
+                $("#prevBtn").prop("disabled", false);
+            }
+            if (currentStep === totalSteps) {
+                $("#nextBtn").prop("disabled", true);
+            }
+        });
+
+        $("#prevBtn").click(function () {
+            if (currentStep > 1) {
+                $("#step" + currentStep).removeClass("active");
+                currentStep--;
+                $("#step" + currentStep).addClass("active");
+                $("#nextBtn").prop("disabled", false);
+            }
+            if (currentStep === 1) {
+                $("#prevBtn").prop("disabled", true);
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const cookingSessions = [
+        { id: 1, title: "Mastering Italian Pasta", date: "2025-02-20T18:00:00", image: "https://cdn.evbuc.com/images/925438633/2399736273223/1/logo.20241231-161358" },
+        { id: 2, title: "Plant-Based Delights", date: "2025-02-25T17:00:00", image: "https://www.escoffier.edu/wp-content/uploads/2023/09/Veganism-101-The-Basics-of-Vegan-Cooking-1200x630-.png" },
+        { id: 3, title: "Mexican Fiesta Night", date: "2025-03-05T19:00:00", image: "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F448005849%2F120259276191%2F1%2Foriginal.20230216-182138?w=1000&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=002394b74718b539c3ab4487b362e34a" }
+    ];
+
+    function updateCountdown(eventDate, element) {
+        const now = new Date();
+        const eventTime = new Date(eventDate);
+        const diff = eventTime - now;
+
+        if (diff > 0) {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            element.textContent = `Starting in: ${days}d ${hours}h ${minutes}m`;
+        } else {
+            element.textContent = "Class in Progress!";
+        }
+    }
+
+    function loadSessions() {
+        const sessionContainer = document.getElementById("sessionList");
+
+        cookingSessions.forEach(session => {
+            const sessionDiv = document.createElement("div");
+            sessionDiv.classList.add("col-md-4", "mb-4");
+
+            sessionDiv.innerHTML = `
+                <div class="session-card">
+                    <img src="${session.image}" class="session-image" alt="${session.title}">
+                    <div class="session-info">
+                        <h5 class="session-title-small">${session.title}</h5>
+                        <p class="session-countdown" id="countdown-${session.id}"></p>
+                        <button class="join-button" data-bs-toggle="modal" data-bs-target="#sessionModalUnique">
+                            Join Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            sessionContainer.appendChild(sessionDiv);
+
+            const countdownElement = document.getElementById(`countdown-${session.id}`);
+            if (countdownElement) {
+                updateCountdown(session.date, countdownElement);
+                setInterval(() => updateCountdown(session.date, countdownElement), 60000);
+            }
+        });
+    }
+
+    loadSessions();
+
+    document.getElementById("sessionFormUnique").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Show a success message inside the modal
+        let successMessage = document.getElementById("formSuccessMessage");
+        successMessage.classList.remove("d-none");
+        
+        // Disable the submit button after successful registration
+        document.getElementById("submitBtn").disabled = true;
+    });
+
+    // Reset the form when the modal is closed
+    document.getElementById("sessionModalUnique").addEventListener("hidden.bs.modal", function () {
+        document.getElementById("sessionFormUnique").reset();
+        document.getElementById("formSuccessMessage").classList.add("d-none");
+        document.getElementById("submitBtn").disabled = false;
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    let buttons = document.querySelectorAll(".promo-btn-r23, .promo-btn-small-r23");
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            
+            window.location.href = "favorites.html"; 
+
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll(".counter");
+
+        counters.forEach(counter => {
+            counter.innerText = "0"; // Start from 0
+
+            const updateCounter = () => {
+                const target = +counter.getAttribute("data-target");
+                const count = +counter.innerText;
+
+                const increment = target / 100; // Adjust speed
+
+                if (count < target) {
+                    counter.innerText = `${Math.ceil(count + increment)}`;
+                    setTimeout(updateCounter, 20); // Adjust speed
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCounter();
+        });
+    });
+
+    </script>
+    
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="favorites.js"></script>
+</body>
+</html>
+
